@@ -1,0 +1,15 @@
+img.imgPreview {
+	/*width: 500px;
+	height: 300px;*/
+	width: 300px;
+	height: 400px;
+}
+
+@media (max-width: 991.98px) {
+	img.imgPreview {
+		/*width: 270px;
+		height: 180px;*/
+		width: 180px;
+		height: 240px;
+	}
+}

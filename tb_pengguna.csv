@@ -1,0 +1,73 @@
+id_pegawai;id_tim;nama_pengguna;username;password;email;jabatan;fungsi;level
+1;;Ir. Dody Herlando M.Econ.;dody;$2y$10$fwEObiyjIMHGhbCbaJhSMuA6DYpvgESk2AGoVtrp.RtKkHncpbuoG;dody@bps.go.id;Kepala ;;Administrator
+2;;Ridwan Hidayat S.Si.;ridwanh;$2y$10$fwEObiyjIMHGhbCbaJhSMuA6DYpvgESk2AGoVtrp.RtKkHncpbuoG;ridwanh@bps.go.id;Kepala ;Bagian Umum;Administrator
+3;;Desi Novianti S.ST, MM;desi.novianti;$2y$10$fwEObiyjIMHGhbCbaJhSMuA6DYpvgESk2AGoVtrp.RtKkHncpbuoG;desi.novianti@bps.go.id;Kepala ;Bagian Umum;Operator
+4;;Faizal Ahkami S.E.;ahkami;$2y$10$fwEObiyjIMHGhbCbaJhSMuA6DYpvgESk2AGoVtrp.RtKkHncpbuoG;ahkami@bps.go.id;Staf;Bagian Umum;Operator
+5;;Triyanto SE;triyanto2;$2y$10$fwEObiyjIMHGhbCbaJhSMuA6DYpvgESk2AGoVtrp.RtKkHncpbuoG;triyanto2@bps.go.id;Staf;Bagian Umum;Operator
+6;;Iman Nugraha S.H, M.H.;imann;$2y$10$fwEObiyjIMHGhbCbaJhSMuA6DYpvgESk2AGoVtrp.RtKkHncpbuoG;imann@bps.go.id;Kepala ;Bagian Umum;Administrator
+7;;Pramita Gayatri S.Psi;pramita;$2y$10$fwEObiyjIMHGhbCbaJhSMuA6DYpvgESk2AGoVtrp.RtKkHncpbuoG;pramita@bps.go.id;Analis Kepegawaian Muda;Bagian Umum;Administrator
+8;;Baimahdi;baimahdi;$2y$10$fwEObiyjIMHGhbCbaJhSMuA6DYpvgESk2AGoVtrp.RtKkHncpbuoG;baimahdi@bps.go.id;Penugasan Analis Kepegawaian Pelaksana;Bagian Umum;Administrator
+9;;Rahma Dian Muliasti A.Md;rdmuliasti;$2y$10$fwEObiyjIMHGhbCbaJhSMuA6DYpvgESk2AGoVtrp.RtKkHncpbuoG;rdmuliasti@bps.go.id;Penata Usaha Keuangan;Bagian Umum;Operator
+10;;Intan Putri Firdaus A.Md;intan.pf;$2y$10$fwEObiyjIMHGhbCbaJhSMuA6DYpvgESk2AGoVtrp.RtKkHncpbuoG;intan.pf@bps.go.id;Bendahara Pengeluaran Daerah;Bagian Umum;Operator
+11;;Vicky Fernando A.P.Kb.N.;vicky.fernando;$2y$10$fwEObiyjIMHGhbCbaJhSMuA6DYpvgESk2AGoVtrp.RtKkHncpbuoG;vicky.fernando@bps.go.id;Penata Usaha Keuangan;Bagian Umum;Operator
+12;;Tedi Ruswandi MM;tedi;$2y$10$fwEObiyjIMHGhbCbaJhSMuA6DYpvgESk2AGoVtrp.RtKkHncpbuoG;tedi@bps.go.id;Penugasan Analis Pengelolaan Keuangan APBN Ahli Muda;Bagian Umum;Operator
+13;;Desty Tritanti SE;desty.tritanti;$2y$10$fwEObiyjIMHGhbCbaJhSMuA6DYpvgESk2AGoVtrp.RtKkHncpbuoG;desty.tritanti@bps.go.id;Staf;Bagian Umum;Operator
+14;;Puwiwi S.AP;puwiwi;$2y$10$fwEObiyjIMHGhbCbaJhSMuA6DYpvgESk2AGoVtrp.RtKkHncpbuoG;puwiwi@bps.go.id;Staf;Bagian Umum;Operator
+15;;Akhmad Samarga S.Sos, MAP;samarga;$2y$10$fwEObiyjIMHGhbCbaJhSMuA6DYpvgESk2AGoVtrp.RtKkHncpbuoG;samarga@bps.go.id;Kepala ;Bagian Umum;Operator
+16;;Aan Fathurahman;aan.fathur;$2y$10$fwEObiyjIMHGhbCbaJhSMuA6DYpvgESk2AGoVtrp.RtKkHncpbuoG;aan.fathur@bps.go.id;Pengelola Surat dan Dokumen;Bagian Umum;Operator
+17;;Abdullah;abdullah2;$2y$10$fwEObiyjIMHGhbCbaJhSMuA6DYpvgESk2AGoVtrp.RtKkHncpbuoG;abdullah2@bps.go.id;Pengelola Surat dan Dokumen;Bagian Umum;Operator
+18;;Chusni Maria Rosidah S.E;cmrosidah;$2y$10$fwEObiyjIMHGhbCbaJhSMuA6DYpvgESk2AGoVtrp.RtKkHncpbuoG;cmrosidah@bps.go.id;Staf;Bagian Umum;Operator
+19;;Yoga Bayu Adi S.E;yogabayu;$2y$10$fwEObiyjIMHGhbCbaJhSMuA6DYpvgESk2AGoVtrp.RtKkHncpbuoG;yogabayu@bps.go.id;Staf;Bagian Umum;Operator
+20;;Yuliana Mayangsari A.Md,;yuliana;$2y$10$fwEObiyjIMHGhbCbaJhSMuA6DYpvgESk2AGoVtrp.RtKkHncpbuoG;yuliana@bps.go.id;Staf;Bagian Umum;Operator
+21;;Dandi Iswandi S.Si, MM.;dandi;$2y$10$fwEObiyjIMHGhbCbaJhSMuA6DYpvgESk2AGoVtrp.RtKkHncpbuoG;dandi@bps.go.id;Kepala ;Bagian Umum;Operator
+22;;Wahyu Muhamad Nugraha S.E;wmnugraha;$2y$10$fwEObiyjIMHGhbCbaJhSMuA6DYpvgESk2AGoVtrp.RtKkHncpbuoG;wmnugraha@bps.go.id;Staf;Bagian Umum;Operator
+23;;Ir. Indra Warman;warman;$2y$10$fwEObiyjIMHGhbCbaJhSMuA6DYpvgESk2AGoVtrp.RtKkHncpbuoG;warman@bps.go.id;Kepala ;Fungsi Statistik Sosial;Operator
+24;;Yulian Sarwo Edi SST, M.Si.;yulian.sarwo;$2y$10$fwEObiyjIMHGhbCbaJhSMuA6DYpvgESk2AGoVtrp.RtKkHncpbuoG;yulian.sarwo@bps.go.id;Statistisi Madya;Fungsi Statistik Sosial;Operator
+25;;Heri Purnomo SST.,M.Si;hpurnomo;$2y$10$fwEObiyjIMHGhbCbaJhSMuA6DYpvgESk2AGoVtrp.RtKkHncpbuoG;hpurnomo@bps.go.id;Kepala ;Fungsi Statistik Sosial;Operator
+26;;Pradhita Andiah Permani SST;pradhita.andiah;$2y$10$fwEObiyjIMHGhbCbaJhSMuA6DYpvgESk2AGoVtrp.RtKkHncpbuoG;pradhita.andiah@bps.go.id;Statistisi Pertama;Fungsi Statistik Sosial;Operator
+27;;Hani Febrimuliani SST;hani.febrimuliani;$2y$10$fwEObiyjIMHGhbCbaJhSMuA6DYpvgESk2AGoVtrp.RtKkHncpbuoG;hani.febrimuliani@bps.go.id;Statistisi Pertama;Fungsi Statistik Sosial;Operator
+28;;Urip Puji Raharjo SST, MAP;urip_puji;$2y$10$fwEObiyjIMHGhbCbaJhSMuA6DYpvgESk2AGoVtrp.RtKkHncpbuoG;urip_puji@bps.go.id;Kepala ;Fungsi Statistik Sosial;Operator
+29;;Khoirul Minan A.Md;khoirulminan;$2y$10$fwEObiyjIMHGhbCbaJhSMuA6DYpvgESk2AGoVtrp.RtKkHncpbuoG;khoirulminan@bps.go.id;Statistisi Pelaksana;Fungsi Statistik Sosial;Operator
+30;;Nurina Paramitasari SST., SE.,M.Si;nurina;$2y$10$fwEObiyjIMHGhbCbaJhSMuA6DYpvgESk2AGoVtrp.RtKkHncpbuoG;nurina@bps.go.id;Staf;Fungsi Statistik Sosial;Operator
+31;;Sukma Direja SST, M.S.E;direja;$2y$10$fwEObiyjIMHGhbCbaJhSMuA6DYpvgESk2AGoVtrp.RtKkHncpbuoG;direja@bps.go.id;Kepala ;Fungsi Statistik Sosial;Operator
+32;;Frenky Wachida Rachmawati SST;wachida.rachma;$2y$10$fwEObiyjIMHGhbCbaJhSMuA6DYpvgESk2AGoVtrp.RtKkHncpbuoG;wachida.rachma@bps.go.id;Statistisi Pertama;Fungsi Statistik Sosial;Operator
+33;;Hariyanto SST, M.Si;hariyanto;$2y$10$fwEObiyjIMHGhbCbaJhSMuA6DYpvgESk2AGoVtrp.RtKkHncpbuoG;hariyanto@bps.go.id;Kepala ;Fungsi Statistik Produksi;Operator
+34;;Noviar S.Si, M.Si;noviar;$2y$10$fwEObiyjIMHGhbCbaJhSMuA6DYpvgESk2AGoVtrp.RtKkHncpbuoG;noviar@bps.go.id;Statistisi Madya;Fungsi Statistik Produksi;Operator
+35;;Purwanto Badarani SST;pbadarani;$2y$10$fwEObiyjIMHGhbCbaJhSMuA6DYpvgESk2AGoVtrp.RtKkHncpbuoG;pbadarani@bps.go.id;Kepala ;Fungsi Statistik Produksi;Operator
+36;;Wahyudi SST;wahyudim;$2y$10$fwEObiyjIMHGhbCbaJhSMuA6DYpvgESk2AGoVtrp.RtKkHncpbuoG;wahyudim@bps.go.id;Statistisi Pertama;Fungsi Statistik Produksi;Operator
+37;;Nera Difia SST;nera;$2y$10$fwEObiyjIMHGhbCbaJhSMuA6DYpvgESk2AGoVtrp.RtKkHncpbuoG;nera@bps.go.id;Staf;Fungsi Statistik Produksi;Operator
+38;;Enang Sumarna S.Si;enangs;$2y$10$fwEObiyjIMHGhbCbaJhSMuA6DYpvgESk2AGoVtrp.RtKkHncpbuoG;enangs@bps.go.id;Statistisi Muda;Fungsi Statistik Produksi;Operator
+39;;Moh. Sis Hidayatullah;moh.hidayatullah;$2y$10$fwEObiyjIMHGhbCbaJhSMuA6DYpvgESk2AGoVtrp.RtKkHncpbuoG;moh.hidayatullah@bps.go.id;Statistisi Penyelia;Fungsi Statistik Produksi;Operator
+40;;Mohamad Nordin SE, MAP;mnordin;$2y$10$fwEObiyjIMHGhbCbaJhSMuA6DYpvgESk2AGoVtrp.RtKkHncpbuoG;mnordin@bps.go.id;Kepala ;Fungsi Statistik Produksi;Operator
+41;;Suwandari SST;ndari;$2y$10$fwEObiyjIMHGhbCbaJhSMuA6DYpvgESk2AGoVtrp.RtKkHncpbuoG;ndari@bps.go.id;Statistisi Muda;Fungsi Statistik Produksi;Operator
+42;;Bambang Widjonarko SP, M.M.;bambangw;$2y$10$fwEObiyjIMHGhbCbaJhSMuA6DYpvgESk2AGoVtrp.RtKkHncpbuoG;bambangw@bps.go.id;Kepala ;Fungsi Statistik Distribusi;Operator
+43;;Suhandi S.ST, MM;suhandi;$2y$10$fwEObiyjIMHGhbCbaJhSMuA6DYpvgESk2AGoVtrp.RtKkHncpbuoG;suhandi@bps.go.id;Statistisi Madya;Fungsi Statistik Distribusi;Operator
+44;;Viska Ekayani SE;viska;$2y$10$fwEObiyjIMHGhbCbaJhSMuA6DYpvgESk2AGoVtrp.RtKkHncpbuoG;viska@bps.go.id;Statistisi Pertama;Fungsi Statistik Distribusi;Operator
+45;;Yuaninda Poersianti A.Md;yuaninda;$2y$10$fwEObiyjIMHGhbCbaJhSMuA6DYpvgESk2AGoVtrp.RtKkHncpbuoG;yuaninda@bps.go.id;Statistisi Pelaksana;Fungsi Statistik Distribusi;Operator
+46;;Deviani Kusumawati SAP;deviani;$2y$10$fwEObiyjIMHGhbCbaJhSMuA6DYpvgESk2AGoVtrp.RtKkHncpbuoG;deviani@bps.go.id;Staf;Fungsi Statistik Distribusi;Operator
+47;;Sigit Nugroho S.Si, M.URP;sigit_nugh;$2y$10$fwEObiyjIMHGhbCbaJhSMuA6DYpvgESk2AGoVtrp.RtKkHncpbuoG;sigit_nugh@bps.go.id;Statistisi Muda;Fungsi Statistik Distribusi;Operator
+48;;Ir. Evodia Trionerawati;evodia;$2y$10$fwEObiyjIMHGhbCbaJhSMuA6DYpvgESk2AGoVtrp.RtKkHncpbuoG;evodia@bps.go.id;Kepala ;Fungsi Statistik Distribusi;Operator
+49;;Septiarida Nonalisa SST;septiarida.nonalisa;$2y$10$fwEObiyjIMHGhbCbaJhSMuA6DYpvgESk2AGoVtrp.RtKkHncpbuoG;septiarida.nonalisa@bps.go.id;Statistisi Pertama;Fungsi Statistik Distribusi;Operator
+50;;Elizabeth S.ST;elizabeth;$2y$10$fwEObiyjIMHGhbCbaJhSMuA6DYpvgESk2AGoVtrp.RtKkHncpbuoG;elizabeth@bps.go.id;Staf;Fungsi Statistik Distribusi;Operator
+51;;Budi Prawoto M.M;budipra;$2y$10$fwEObiyjIMHGhbCbaJhSMuA6DYpvgESk2AGoVtrp.RtKkHncpbuoG;budipra@bps.go.id;Kepala ;Fungsi Nerwilis;Operator
+52;;Saeful Hidayat S.Si, MSE;saefulh;$2y$10$fwEObiyjIMHGhbCbaJhSMuA6DYpvgESk2AGoVtrp.RtKkHncpbuoG;saefulh@bps.go.id;Statistisi Madya;Fungsi Nerwilis;Operator
+53;;Hendro Prayitno S.Si, MM;hendrop;$2y$10$fwEObiyjIMHGhbCbaJhSMuA6DYpvgESk2AGoVtrp.RtKkHncpbuoG;hendrop@bps.go.id;Kepala ;Fungsi Nerwilis;Operator
+54;;Muhammad Fajar SST, M.Stat;mfajar;$2y$10$fwEObiyjIMHGhbCbaJhSMuA6DYpvgESk2AGoVtrp.RtKkHncpbuoG;mfajar@bps.go.id;Statistisi Muda;Fungsi Nerwilis;Operator
+55;;Teuku Muhammad Madinah S.Si;teuku;$2y$10$fwEObiyjIMHGhbCbaJhSMuA6DYpvgESk2AGoVtrp.RtKkHncpbuoG;teuku@bps.go.id;Penugasan Statistisi Muda;Fungsi Nerwilis;Operator
+56;;Lucie Suparintina S.Si, M.S.E;lucies;$2y$10$fwEObiyjIMHGhbCbaJhSMuA6DYpvgESk2AGoVtrp.RtKkHncpbuoG;lucies@bps.go.id;Statistisi Pertama;Fungsi Nerwilis;Operator
+57;;Khafid Akhiriyanto SST;khafid;$2y$10$fwEObiyjIMHGhbCbaJhSMuA6DYpvgESk2AGoVtrp.RtKkHncpbuoG;khafid@bps.go.id;Kepala ;Fungsi Nerwilis;Operator
+58;;Puji Aditia Sulistiani SST;pujiaditia;$2y$10$fwEObiyjIMHGhbCbaJhSMuA6DYpvgESk2AGoVtrp.RtKkHncpbuoG;pujiaditia@bps.go.id;Statistisi Muda;Fungsi Nerwilis;Operator
+59;;Sa'diah SST;sadiah;$2y$10$fwEObiyjIMHGhbCbaJhSMuA6DYpvgESk2AGoVtrp.RtKkHncpbuoG;sadiah@bps.go.id;Statistisi Pertama;Fungsi Nerwilis;Operator
+60;;Andrean MA.;andrean;$2y$10$fwEObiyjIMHGhbCbaJhSMuA6DYpvgESk2AGoVtrp.RtKkHncpbuoG;andrean@bps.go.id;Kepala ;Fungsi IPDS;Operator
+61;;Bisma Ariasena Slamet SE., MAP;bisma.as;$2y$10$fwEObiyjIMHGhbCbaJhSMuA6DYpvgESk2AGoVtrp.RtKkHncpbuoG;bisma.as@bps.go.id;Kepala ;Fungsi IPDS;Administrator
+62;;A. Jaenus Solihin SE;jaenus;$2y$10$fwEObiyjIMHGhbCbaJhSMuA6DYpvgESk2AGoVtrp.RtKkHncpbuoG;jaenus@bps.go.id;Penugasan Pranata Komputer Pelaksana;Fungsi IPDS;Operator
+63;;Canggih Hostika Fajarwati S.Si;canggih;$2y$10$fwEObiyjIMHGhbCbaJhSMuA6DYpvgESk2AGoVtrp.RtKkHncpbuoG;canggih@bps.go.id;Pranata Komputer Pertama;Fungsi IPDS;Operator
+64;;Asti Rumiatun S.Si, M.Ec.Dev;asti;$2y$10$fwEObiyjIMHGhbCbaJhSMuA6DYpvgESk2AGoVtrp.RtKkHncpbuoG;asti@bps.go.id;Kepala ;Fungsi IPDS;Administrator
+65;;Sugara Ady S S.Si;soegara;$2y$10$fwEObiyjIMHGhbCbaJhSMuA6DYpvgESk2AGoVtrp.RtKkHncpbuoG;soegara@bps.go.id;Staf;Fungsi IPDS;Administrator
+66;;Nuradika Pradana Reeza Krisna Utama S.Tr.Stat.;nuradika.reeza;$2y$10$fwEObiyjIMHGhbCbaJhSMuA6DYpvgESk2AGoVtrp.RtKkHncpbuoG;nuradika.reeza@bps.go.id;Staf;Fungsi IPDS;Administrator
+67;;Drs. Agusman Simbolon MAB;agusman;$2y$10$fwEObiyjIMHGhbCbaJhSMuA6DYpvgESk2AGoVtrp.RtKkHncpbuoG;agusman@bps.go.id;Pranata Komputer Madya;Fungsi IPDS;Operator
+68;;Nur'izzah Inayati SST, M.T;nuri.izzah;$2y$10$fwEObiyjIMHGhbCbaJhSMuA6DYpvgESk2AGoVtrp.RtKkHncpbuoG;nuri.izzah@bps.go.id;Kepala ;Fungsi IPDS;Operator
+69;;Toga Hamonangan S.Si, M.M;toga;$2y$10$fwEObiyjIMHGhbCbaJhSMuA6DYpvgESk2AGoVtrp.RtKkHncpbuoG;toga@bps.go.id;Statistisi Madya;Fungsi IPDS;Operator
+70;;Eben Baenuri S.E.;baenuri;$2y$10$fwEObiyjIMHGhbCbaJhSMuA6DYpvgESk2AGoVtrp.RtKkHncpbuoG;baenuri@bps.go.id;Statistisi Pertama;Fungsi IPDS;Operator
+71;;Dian Solihah S.Tr.Stat;dian.solihah;$2y$10$fwEObiyjIMHGhbCbaJhSMuA6DYpvgESk2AGoVtrp.RtKkHncpbuoG;dian.solihah@bps.go.id;Statistisi Pertama;Fungsi IPDS;Operator
+72;;Hilda S.Si.;hilda;$2y$10$fwEObiyjIMHGhbCbaJhSMuA6DYpvgESk2AGoVtrp.RtKkHncpbuoG;hilda@bps.go.id;Statistisi Muda;Fungsi IPDS;Operator
