@@ -6,7 +6,7 @@
          <div class="sidebar-brand-icon rotate-n-15">
              <i class="fas fa-envelope-open-text"></i>
          </div>
-         <div class="sidebar-brand-text mx-3">LISDA</div>
+         <div class="sidebar-brand-text mx-3">MONCAKE</div>
      </a>
 
      <!-- Divider -->
@@ -29,20 +29,20 @@
 
                             
      <li class="nav-item">
-         <a class="nav-link" href="<?= base_url('admin/surat_masuk') ?>">             
+         <a class="nav-link" href="<?= base_url('admin/??') ?>">             
              <i class="fas fa-fw fa-table"></i>
-             <span>Surat Masuk</span></a>
+             <span>Upload Target</span></a>
      </li>
 
 
      <!-- kepala, admin, operator -->
-     <?php if ($user['id_role']==1 OR $user['id_role']==2 OR $user['id_role']==3){ ?>
+     <?php // if ($user['id_role']==1 OR $user['id_role']==2 OR $user['id_role']==3){ ?>
      <li class="nav-item">
          <a class="nav-link" href="<?= base_url('admin/surat_keluar') ?>">             
              <i class="fas fa-newspaper"></i>
              <span>Surat Keluar</span></a>
      </li>
-     <?php } ?>
+     <?php // } ?>
      <!-- Divider -->
      <hr class="sidebar-divider">
 
@@ -52,14 +52,14 @@
      </div>
 
      <!-- hanya admin -->
-     <?php if ($user['id_role']==1){ ?>
+     <?php //if ($user['id_role']==1){ ?>
      <!-- Nav Item - Charts -->
      <li class="nav-item">
          <a class="nav-link" href="<?= base_url('admin/pengguna') ?>">             
              <i class="fas fa-fw fa-users"></i>
              <span>Pengguna</span></a>
      </li>
-     <?php } ?>
+     <?php// } ?>
 
      <!-- Nav Item - Charts -->
      <li class="nav-item">
@@ -69,14 +69,14 @@
      </li>
 
      <!-- hanya operator -->
-     <?php if ($user['id_role']==2){ ?>
+     <?php// if ($user['id_role']==2){ ?>
      <!-- Nav Item - Charts -->
      <li class="nav-item">
          <a class="nav-link" target="_blank" href="<?= base_url('assets/panduan/panduan.pdf') ?>">             
              <i class="fas fa-fw fa-file-alt"></i>
              <span>Panduan</span></a>
      </li>
-     <?php } ?>
+     <?php// } ?>
 
      <!-- Divider -->
      <hr class="sidebar-divider m-0">
