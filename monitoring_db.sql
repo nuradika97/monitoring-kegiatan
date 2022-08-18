@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 15, 2022 at 04:05 AM
+-- Generation Time: Aug 18, 2022 at 09:50 AM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.4
 
@@ -24,13 +24,40 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `nama_kegiatan`
+-- Table structure for table `jenis_kegiatan`
 --
 
-CREATE TABLE `nama_kegiatan` (
-  `id_nama` int(11) NOT NULL,
+CREATE TABLE `jenis_kegiatan` (
+  `id_jenis_kegiatan` int(11) NOT NULL,
+  `nama_kegiatan` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `jenis_kegiatan`
+--
+
+INSERT INTO `jenis_kegiatan` (`id_jenis_kegiatan`, `nama_kegiatan`) VALUES
+(1, 'Survei'),
+(2, 'Sensus'),
+(3, 'Non Sensus/Survei');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `kegiatan`
+--
+
+CREATE TABLE `kegiatan` (
+  `id_kegiatan` int(11) NOT NULL,
   `id_tim` int(11) NOT NULL,
-  `nama_keg` varchar(80) NOT NULL
+  `nama_kegiatan` varchar(80) NOT NULL,
+  `tgl_mulai` date NOT NULL,
+  `tgl_selesai` date NOT NULL,
+  `id_periode` int(11) NOT NULL,
+  `id_jenis_kegiatan` int(11) NOT NULL,
+  `target` varchar(100) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `modified_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -124,6 +151,28 @@ INSERT INTO `pegawai` (`id_pegawai`, `nama_pegawai`, `username`, `password`, `em
 (70, 'Eben Baenuri S.E.', 'baenuri', '$2y$10$fwEObiyjIMHGhbCbaJhSMuA6DYpvgESk2AGoVtrp.RtKkHncpbuoG', 'baenuri@bps.go.id'),
 (71, 'Dian Solihah S.Tr.Stat', 'dian.solihah', '$2y$10$fwEObiyjIMHGhbCbaJhSMuA6DYpvgESk2AGoVtrp.RtKkHncpbuoG', 'dian.solihah@bps.go.id'),
 (72, 'Hilda S.Si.', 'hilda', '$2y$10$fwEObiyjIMHGhbCbaJhSMuA6DYpvgESk2AGoVtrp.RtKkHncpbuoG', 'hilda@bps.go.id');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `periode`
+--
+
+CREATE TABLE `periode` (
+  `id_periode` int(11) NOT NULL,
+  `nama_periode` varchar(60) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `periode`
+--
+
+INSERT INTO `periode` (`id_periode`, `nama_periode`) VALUES
+(1, 'Bulanan'),
+(2, 'Triwulanan'),
+(3, 'Subround'),
+(4, 'Semesteran'),
+(5, 'Tahunan');
 
 -- --------------------------------------------------------
 
@@ -272,16 +321,31 @@ INSERT INTO `tim_kegiatan` (`id_timkeg`, `id_tim`, `id_pegawai`, `id_role`) VALU
 --
 
 --
--- Indexes for table `nama_kegiatan`
+-- Indexes for table `jenis_kegiatan`
 --
-ALTER TABLE `nama_kegiatan`
-  ADD PRIMARY KEY (`id_nama`);
+ALTER TABLE `jenis_kegiatan`
+  ADD PRIMARY KEY (`id_jenis_kegiatan`);
+
+--
+-- Indexes for table `kegiatan`
+--
+ALTER TABLE `kegiatan`
+  ADD PRIMARY KEY (`id_kegiatan`),
+  ADD KEY `id_tim` (`id_tim`),
+  ADD KEY `id_periode` (`id_periode`),
+  ADD KEY `id_jenis_kegiatan` (`id_jenis_kegiatan`);
 
 --
 -- Indexes for table `pegawai`
 --
 ALTER TABLE `pegawai`
   ADD PRIMARY KEY (`id_pegawai`);
+
+--
+-- Indexes for table `periode`
+--
+ALTER TABLE `periode`
+  ADD PRIMARY KEY (`id_periode`);
 
 --
 -- Indexes for table `role`
@@ -315,16 +379,28 @@ ALTER TABLE `tim_kegiatan`
 --
 
 --
--- AUTO_INCREMENT for table `nama_kegiatan`
+-- AUTO_INCREMENT for table `jenis_kegiatan`
 --
-ALTER TABLE `nama_kegiatan`
-  MODIFY `id_nama` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `jenis_kegiatan`
+  MODIFY `id_jenis_kegiatan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `kegiatan`
+--
+ALTER TABLE `kegiatan`
+  MODIFY `id_kegiatan` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `pegawai`
 --
 ALTER TABLE `pegawai`
   MODIFY `id_pegawai` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=73;
+
+--
+-- AUTO_INCREMENT for table `periode`
+--
+ALTER TABLE `periode`
+  MODIFY `id_periode` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `role`
@@ -353,6 +429,14 @@ ALTER TABLE `tim_kegiatan`
 --
 -- Constraints for dumped tables
 --
+
+--
+-- Constraints for table `kegiatan`
+--
+ALTER TABLE `kegiatan`
+  ADD CONSTRAINT `kegiatan_ibfk_1` FOREIGN KEY (`id_tim`) REFERENCES `tim` (`id_tim`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `kegiatan_ibfk_2` FOREIGN KEY (`id_periode`) REFERENCES `periode` (`id_periode`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `kegiatan_ibfk_3` FOREIGN KEY (`id_jenis_kegiatan`) REFERENCES `jenis_kegiatan` (`id_jenis_kegiatan`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `tim_kegiatan`
