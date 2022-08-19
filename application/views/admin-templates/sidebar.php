@@ -55,9 +55,9 @@
      <?php //if ($user['id_role']==1){ ?>
      <!-- Nav Item - Charts -->
      <li class="nav-item">
-         <a class="nav-link" href="<?= base_url('admin/pengguna') ?>">             
+         <a class="nav-link" href="<?= base_url('Pegawai') ?>">             
              <i class="fas fa-fw fa-users"></i>
-             <span>Pengguna</span></a>
+             <span>Pegawai</span></a>
      </li>
      <?php// } ?>
 

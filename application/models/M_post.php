@@ -7,6 +7,7 @@ class M_post extends CI_Model
     {
         $this->db->where('id_post', $id);
         return $this->db->get('post');
+        
     }
 
 
@@ -27,6 +28,7 @@ class M_post extends CI_Model
         $this->db->where('id_post', $id);
         return $this->db->delete('post');
     }
+
 
 
     
