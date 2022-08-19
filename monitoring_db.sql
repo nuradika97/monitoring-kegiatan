@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 18, 2022 at 09:50 AM
+-- Generation Time: Aug 19, 2022 at 11:30 AM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.4
 
@@ -55,7 +55,23 @@ CREATE TABLE `kegiatan` (
   `tgl_selesai` date NOT NULL,
   `id_periode` int(11) NOT NULL,
   `id_jenis_kegiatan` int(11) NOT NULL,
+  `id_satuan` int(11) NOT NULL,
   `target` varchar(100) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `modified_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `laporan_kegiatan`
+--
+
+CREATE TABLE `laporan_kegiatan` (
+  `id_laporan_kegiatan` int(11) NOT NULL,
+  `id_kegiatan` int(11) NOT NULL,
+  `tgl_laporan` date NOT NULL,
+  `realisasi` varchar(100) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `modified_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -224,6 +240,28 @@ INSERT INTO `satker` (`id_satker`, `kode_satker`, `nama_satker`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `satuan`
+--
+
+CREATE TABLE `satuan` (
+  `id_satuan` int(11) NOT NULL,
+  `nama_satuan` varchar(60) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `satuan`
+--
+
+INSERT INTO `satuan` (`id_satuan`, `nama_satuan`) VALUES
+(1, 'dokumen'),
+(2, 'laporan'),
+(3, 'database'),
+(4, 'responden'),
+(5, 'publikasi');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `tim`
 --
 
@@ -333,7 +371,15 @@ ALTER TABLE `kegiatan`
   ADD PRIMARY KEY (`id_kegiatan`),
   ADD KEY `id_tim` (`id_tim`),
   ADD KEY `id_periode` (`id_periode`),
-  ADD KEY `id_jenis_kegiatan` (`id_jenis_kegiatan`);
+  ADD KEY `id_jenis_kegiatan` (`id_jenis_kegiatan`),
+  ADD KEY `id_satuan` (`id_satuan`);
+
+--
+-- Indexes for table `laporan_kegiatan`
+--
+ALTER TABLE `laporan_kegiatan`
+  ADD PRIMARY KEY (`id_laporan_kegiatan`),
+  ADD KEY `id_kegiatan` (`id_kegiatan`);
 
 --
 -- Indexes for table `pegawai`
@@ -358,6 +404,12 @@ ALTER TABLE `role`
 --
 ALTER TABLE `satker`
   ADD PRIMARY KEY (`id_satker`);
+
+--
+-- Indexes for table `satuan`
+--
+ALTER TABLE `satuan`
+  ADD PRIMARY KEY (`id_satuan`);
 
 --
 -- Indexes for table `tim`
@@ -391,6 +443,12 @@ ALTER TABLE `kegiatan`
   MODIFY `id_kegiatan` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `laporan_kegiatan`
+--
+ALTER TABLE `laporan_kegiatan`
+  MODIFY `id_laporan_kegiatan` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `pegawai`
 --
 ALTER TABLE `pegawai`
@@ -415,6 +473,12 @@ ALTER TABLE `satker`
   MODIFY `id_satker` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
+-- AUTO_INCREMENT for table `satuan`
+--
+ALTER TABLE `satuan`
+  MODIFY `id_satuan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
 -- AUTO_INCREMENT for table `tim`
 --
 ALTER TABLE `tim`
@@ -436,7 +500,14 @@ ALTER TABLE `tim_kegiatan`
 ALTER TABLE `kegiatan`
   ADD CONSTRAINT `kegiatan_ibfk_1` FOREIGN KEY (`id_tim`) REFERENCES `tim` (`id_tim`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `kegiatan_ibfk_2` FOREIGN KEY (`id_periode`) REFERENCES `periode` (`id_periode`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `kegiatan_ibfk_3` FOREIGN KEY (`id_jenis_kegiatan`) REFERENCES `jenis_kegiatan` (`id_jenis_kegiatan`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `kegiatan_ibfk_3` FOREIGN KEY (`id_jenis_kegiatan`) REFERENCES `jenis_kegiatan` (`id_jenis_kegiatan`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `kegiatan_ibfk_4` FOREIGN KEY (`id_satuan`) REFERENCES `satuan` (`id_satuan`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `laporan_kegiatan`
+--
+ALTER TABLE `laporan_kegiatan`
+  ADD CONSTRAINT `laporan_kegiatan_ibfk_1` FOREIGN KEY (`id_kegiatan`) REFERENCES `kegiatan` (`id_kegiatan`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `tim_kegiatan`
