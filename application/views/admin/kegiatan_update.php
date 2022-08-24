@@ -57,7 +57,7 @@
                     <p class="text-small text-primary mt-1">Password minimal 6 karakter. Kosongkan password jika tidak ingin mengubah</p>
                     
 
-                    <button type="submit" class="btn btn-primary ">Update</button>
+                    <button type="submit" class="btn btn-primary add-success">Update</button>
                     <a href="<?= base_url('pegawai') ?>" class="btn btn-outline-danger ml-3">Cancel</a>
                 </form>
             <?php endforeach; ?>
@@ -70,5 +70,32 @@
 
 </div>
 <!-- End of Main Content -->
+<script>
+    $('.add-succsess').on('click', function(e) {
+
+        e.preventDefault();
+        const href = $(this).attr('href');
+
+        Swal.fire({
+            title: 'Apakah anda yakin?',
+            text: "Data akan dihapus",
+            icon: 'success',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Tambah'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                document.location.href = href;
+                Swal.fire({
+                    title: 'Deleted!',
+                    text: "Data berhasil dihapus.",
+                    icon: 'success',
+                    showConfirmButton: false
+                })
+            }
+        })
+    })
+</script>
 
 <?php $this->view('admin-templates/footer') ?>

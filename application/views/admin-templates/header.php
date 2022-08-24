@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title><?= $title ?></title>
+    <title><?= 'Monitoring Kegiatan' ?></title>
 
     <!-- Custom fonts for this template-->
     <link href="<?= base_url('assets/') ?>vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -27,8 +27,6 @@
     <!-- custom css -->
     <link rel="stylesheet" href="<?= base_url('assets/') ?>css/custom.css">
 
-    <!-- OpenStreet Map -->
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.1/dist/leaflet.css" integrity="sha512-Rksm5RenBEKSKFjgI3a41vrjkw4EVPlJ3+OiI65vTjIdo9brlAacEuKOiQ5OFh7cOI1bkDwLqdLw3Zg0cRJAAQ==" crossorigin=""/>
     
 
 </head>
@@ -37,3 +35,4 @@
 
     <!-- Page Wrapper -->
     <div id="wrapper">
+        

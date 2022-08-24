@@ -8,15 +8,17 @@
 <div class="container-fluid">
 
     <!-- Page Heading -->
+     
+    <?= $this->session->flashdata('message'); ?> 
+     
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800">Update Pegawai</h1>
+        <h1 class="h3 mb-0 text-gray-800">Data Pegawai</h1>
     </div>
 
     <!-- Content Row -->
-    <a href="<?= base_url('pegawai/add_pegawai') ?>" class="btn btn-primary btn-sm my-3"><i class="fas fa-user-plus fa-sm text-white-50"></i> Tambah Pegawai</a>
+    <a href="<?= base_url('pegawai/pegawai_add') ?>" class="btn btn-primary btn-sm my-3"><i class="fas fa-user-plus fa-sm text-white-50"></i> Tambah Pegawai</a>
 
     <!-- menampilkan pesan flash data dari session -->
-    <?= $this->session->flashdata('message') ?>
 
     <!-- table artikel-->
     <div class="card shadow mb-4">
@@ -25,10 +27,11 @@
                 <table class="table table-bordered table-hover table-striped" id="dataTable" width="100%">
                     <thead>
                         <tr>
-                            <th class="text-center">#</th>
+                            <th class="text-center">No</th>
                             <th class="text-center">Nama</th>
                             <th class="text-center">Username</th>
                             <th class="text-center">email</th>
+                            <th class="text-center">Login Terakhir</th>
                             <th class="text-center">Aksi</th>
                         </tr>
                     </thead>
@@ -41,6 +44,7 @@
                                 <td><?= $a->nama_pegawai ?></td>
                                 <td><b><?= $a->username ?></b></td>
                                 <td><?= $a->email ?></td>
+                                <td><?= $a->terakhir_login?></td>
 
                                 <td class="text-center">
                                     <a href="<?= base_url('pegawai/edit_pegawai/') . $a->id_pegawai ?>" class="btn btn-warning btn-sm mr-2" data-toggle="tooltip" data-placement="top" title="Update">

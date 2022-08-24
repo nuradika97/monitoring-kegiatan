@@ -61,6 +61,13 @@ End of Footer -->
         })
     </script>
 <?php endif; ?>
+  <script>
+    window.setTimeout(function() {
+        $('.alert').fadeTo(500, 0).slideUp(500, function() {
+            $(this).remove();
+        });
+    }, 3000);
+ </script>
 <!-- end sweet alert -->
 
 <!-- Bootstrap core JavaScript-->
@@ -105,85 +112,7 @@ function showDisposisi(select){
 } 
 </script>
 
-<script>
-    // position we will use later
-    var lat = -3.73;
-    var lon = 110.00;
 
-    // Icon Marker
-    var PlaceIcon = L.Icon.extend({
-            options: {
-                iconSize:     [38, 75],
-                iconAnchor:   [22, 74],
-                popupAnchor:  [-3, -76]
-            }
-        });
-
-    var PlaceMark = new PlaceIcon({iconUrl: '<?= base_url('assets/img/placeholder.png') ?>'});
-    var markerAkad;
-    var markerResepsi;
-
-    // initialize map Akad
-    mapAkad = L.map('mapAkad').setView([lat, lon], 5);
-    
-    // set map tiles source
-    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors',
-      maxZoom: 18,
-    }).addTo(mapAkad);
-
-    //tambah marker jika sudah ada koordinat sebelumnya
-    latAkad = document.getElementById("latAkad").value;
-    longAkad = document.getElementById("longAkad").value;
-    markerAkad = L.marker([latAkad, longAkad], {icon: PlaceMark});
-    markerAkad.addTo(mapAkad).bindPopup("Alamat Akad");
-      
-    //update/tambah marker baru jika belum ada
-    mapAkad.on('click', function(e){
-      var coord = e.latlng;
-      var lat = coord.lat;
-      var lng = coord.lng;
-      if (markerAkad != undefined) {
-            mapAkad.removeLayer(markerAkad);
-        };      
-      markerAkad = L.marker([lat, lng], {icon: PlaceMark});
-      markerAkad.addTo(mapAkad).bindPopup("Alamat Akad");
-      document.getElementById("latAkad").value = lat;
-      document.getElementById("longAkad").value = lng;
-      // document.getElementById("latAkadlihat").value = lat;
-      // document.getElementById("longAkadlihat").value = lng;
-    });
-
-
-    // initialize map Resepsi
-    mapResepsi = L.map('mapResepsi').setView([lat, lon], 5);
-    source2 = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors',
-      maxZoom: 18,
-    }).addTo(mapResepsi);
-
-    //tambah marker jika sudah ada koordinat sebelumnya
-    latResepsi = document.getElementById("latResepsi").value;
-    longResepsi = document.getElementById("longResepsi").value;
-    markerResepsi = L.marker([latResepsi, longResepsi], {icon: PlaceMark});
-    markerResepsi.addTo(mapResepsi).bindPopup("Alamat Resepsi");
-
-    //update/tambah marker baru jika belum ada
-    mapResepsi.on('click', function(e){
-      var coord = e.latlng;
-      var lat = coord.lat;
-      var lng = coord.lng;
-      if (markerResepsi != undefined) {
-            mapResepsi.removeLayer(markerResepsi);
-        };      
-      markerResepsi = L.marker([lat, lng], {icon: PlaceMark});
-      markerResepsi.addTo(mapResepsi).bindPopup("Alamat Resepsi");
-      document.getElementById("latResepsi").value = lat;
-      document.getElementById("longResepsi").value = lng;
-      document.getElementById("latResepsilihat").value = lat;
-      document.getElementById("longResepsilihat").value = lng;
-    });
-</script>
 
 <script>
     $(function() {

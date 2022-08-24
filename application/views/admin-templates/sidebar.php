@@ -35,14 +35,6 @@
      </li>
 
 
-     <!-- kepala, admin, operator -->
-     <?php // if ($user['id_role']==1 OR $user['id_role']==2 OR $user['id_role']==3){ ?>
-     <li class="nav-item">
-         <a class="nav-link" href="<?= base_url('admin/surat_keluar') ?>">             
-             <i class="fas fa-newspaper"></i>
-             <span>Surat Keluar</span></a>
-     </li>
-     <?php // } ?>
      <!-- Divider -->
      <hr class="sidebar-divider">
 
@@ -56,10 +48,52 @@
      <!-- Nav Item - Charts -->
      <li class="nav-item">
          <a class="nav-link" href="<?= base_url('Pegawai') ?>">             
-             <i class="fas fa-fw fa-users"></i>
+             <i class="fas fa-fw fa-user"></i>
              <span>Pegawai</span></a>
      </li>
-     <?php// } ?>
+
+
+     <?php //if ($user['id_role']==1){ ?>
+     <!-- Nav Item - Charts -->
+     <li class="nav-item">
+         <a class="nav-link" href="<?= base_url('Tim') ?>">             
+             <i class="fas fa-fw fa-users"></i>
+             <span>Tim</span></a>
+     </li>
+
+     <li class="nav-item">
+         <a class="nav-link" href="<?= base_url('tim_kegiatan') ?>">             
+             <i class="fas fa-fw fa-list-alt"></i>
+             <span>Tim Kegiatan</span></a>
+     </li>
+
+      <li class="nav-item">
+         <a class="nav-link" href="<?= base_url('kegiatan') ?>">             
+             <i class="fas fa-fw fa-list-alt"></i>
+             <span>Kegiatan</span></a>
+     </li>
+      <li class="nav-item">
+         <a class="nav-link" href="<?= base_url('satker') ?>">             
+             <i class="fas fa-fw fa-list-alt"></i>
+             <span>Satker</span></a>
+     </li>
+     <li class="nav-item">
+         <a class="nav-link" href="<?= base_url('jenis_kegiatan') ?>">             
+             <i class="fas fa-fw fa-list-alt"></i>
+             <span>Jenis Kegiatan</span></a>
+     </li>
+     <li class="nav-item">
+         <a class="nav-link" href="<?= base_url('periode') ?>">             
+             <i class="fas fa-fw fa-list-alt"></i>
+             <span>Periode</span></a>
+     </li>
+          <li class="nav-item">
+         <a class="nav-link" href="<?= base_url('role') ?>">             
+             <i class="fas fa-fw fa-list-alt"></i>
+             <span>Role</span></a>
+     </li>
+  
+  
 
      <!-- Nav Item - Charts -->
      <li class="nav-item">
@@ -69,14 +103,14 @@
      </li>
 
      <!-- hanya operator -->
-     <?php// if ($user['id_role']==2){ ?>
+   
      <!-- Nav Item - Charts -->
      <li class="nav-item">
          <a class="nav-link" target="_blank" href="<?= base_url('assets/panduan/panduan.pdf') ?>">             
              <i class="fas fa-fw fa-file-alt"></i>
              <span>Panduan</span></a>
      </li>
-     <?php// } ?>
+  
 
      <!-- Divider -->
      <hr class="sidebar-divider m-0">

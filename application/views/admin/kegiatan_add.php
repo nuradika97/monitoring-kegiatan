@@ -48,7 +48,7 @@
                     </div>
                 </div>
 
-                <button type="submit" class="btn btn-primary  btn_register btn-block mt-3">Simpan</button>
+                <button type="submit" class="btn btn-primary btn_register btn-block mt-3">Simpan</button>
             </form>
         </div>
     </div>
@@ -61,3 +61,30 @@
 <!-- End of Main Content -->
 
 <?php $this->view('admin-templates/footer') ?>
+<script>
+    $('.btn-register').on('click', function(e) {
+
+        e.preventDefault();
+        const href = $(this).attr('href');
+
+        Swal.fire({
+            title: 'Apakah anda yakin?',
+            text: "Data akan ditambahkan",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Submit'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                document.location.href = href;
+                Swal.fire({
+                    title: 'Submited!',
+                    text: "Data berhasil ditambahkan.",
+                    icon: 'success',
+                    showConfirmButton: false
+                })
+            }
+        })
+    })
+</script>

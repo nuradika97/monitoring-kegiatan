@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Pegawai extends CI_Controller {
+class Kegiatan extends CI_Controller {
 
 	function __construct(){
 		parent::__construct();
@@ -176,19 +176,14 @@ class Pegawai extends CI_Controller {
                 redirect(base_url().'pegawai');
             } else {
                  // die();
-                  $data = array(
-                    'nama_pegawai' => $nama,
-                    'username' => $username,			
-                    'email' => $email		
+                $where = array(
+                    'id_pegawai' => $id		
                 );
-
-                    $where = array(
-                        'id_pegawai' => $id		
-                    );
-                    $this->M_pegawai->update_pegawai($where,$data,'pegawai');
-                    $this->session->set_flashdata('message', '<div class="alert alert-success"><b>Data Berhasil Diubah!</b></div>');
-                    redirect(base_url().'pegawai');
-                }                   
+                $this->session->set_flashdata('message', '<div class="alert alert-warning"><b>Data Tidak ada Perubahan!</b></div>');
+                redirect(base_url().'pegawai');
+                }          
+         
+           
             
 		} else {
        

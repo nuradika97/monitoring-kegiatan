@@ -22,7 +22,7 @@ class Auth extends CI_Controller
     private function _login()
     {
         $username = $this->input->post('username');
-        $password = $this->input->post('password');
+        $password = md5($this->input->post('password'));
 
         // cari data di tabel admin berdasarkan username 
         $user = $this->db->get_where('pegawai', ['username' => $username])->row_array();
@@ -32,7 +32,7 @@ class Auth extends CI_Controller
 
         if ($user) {
             // jika password yg diinput sesuai dgn didatabase
-            if (password_verify($password, $user['password'])) {
+            if ($password == $user['password']) {
                 $data = [
                     'username'   => $user['username'],
                     'id_role'    => $tim_kegiatan['id_role'],
@@ -42,8 +42,16 @@ class Auth extends CI_Controller
                 ];
                 // buat sesssion berdsarkan $data
                 $this->session->set_userdata($data);
+              
+
+				date_default_timezone_set('Asia/Jakarta');
+                $tgl = date('Y-m-d H:i:s');
+                    $stamp = array(
+                    'terakhir_login'		=> $tgl,
+                    );
+                $this->M_pegawai->update_waktu_login(array('username' => $username), $stamp);
                 // if ($user['id_role']==1){
-                    redirect('admin');
+                redirect('admin');
                 // } else {
                 //     redirect('user');
                 // }

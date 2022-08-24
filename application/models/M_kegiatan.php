@@ -1,6 +1,6 @@
 <?php
 
-class M_pegawai extends CI_Model
+class M_kegiatan extends CI_Model
 {
 
 
