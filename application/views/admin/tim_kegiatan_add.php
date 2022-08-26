@@ -23,7 +23,7 @@
                 action="<?= base_url('tim_kegiatan/add_tim_kegiatan_act') ?>">
 
                 <div class="form-group">
-                    <select class="form-control" name="id_tim">
+                    <select class="selectpicker form-control" data-live-search="true" name="id_tim">
                         <option value="">-- Pilih Nama Tim --</option>
                         <?php
                         foreach ($tim as $a) {?>
@@ -35,7 +35,7 @@
                 </div>
 
                 <div class="form-group">
-                    <select class="form-control" name="id_pegawai">
+                    <select class="selectpicker form-control" data-live-search="true" name="id_pegawai">
                         <option value="">-- Pilih Nama Pegawai --</option>
                         <?php
                         foreach ($pegawai as $a) {?>

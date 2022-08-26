@@ -16,50 +16,117 @@
     <!-- content update artikel-->
     <div class="card shadow mb-4">
         <div class="card-body">
-            <?php foreach ($pegawai as $p) : ?>
-                <form method="post" action="<?= base_url('pegawai/update_pegawai/').$p->id_pegawai ?>" enctype="multipart/form-data" autocomplete="off">
-                    <div class="form-group">
-                        <input type="hidden" name="id_pegawai" value="<?= $p->id_pegawai ?>">
-                        <label>Nama :</label>
-                        <input type="text" class="form-control form-control-user" id="nama" name="nama" placeholder="Nama Lengkap" value="<?= $p->nama_pegawai ?>">
-                        <?= form_error('nama', '<small class="text-danger">', '</small>') ?>
+            <?php foreach ($kegiatan as $k) : ?>
+            <form
+                method="post"
+                action="<?= base_url('kegiatan/update_kegiatan/').$k->id_kegiatan ?>"
+                enctype="multipart/form-data"
+                autocomplete="off">
+                
+                <div class="form-group">
+                    <input type="hidden" name="id_kegiatan" value="<?= $k->id_kegiatan ?>">
+                    <label>Nama Kegiatan :</label>
+                    <input
+                        type="text"
+                        class="form-control form-control-user"
+                        id="nama_kegiatan"
+                        name="nama_kegiatan"
+                        placeholder="Nama Kegiatan"
+                        value="<?= $k->nama_kegiatan ?>">
+                    <?= form_error('nama_kegiatan', '<small class="text-danger">', '</small>') ?>
+                </div>
+
+                  <div class="form-group">
+                    <select name="id_tim" data-live-search="true" class="selectpicker form-control">
+                        <option value="<?= $k->id_tim ?>"><?= $k->nama_tim ?></option>
+                        <?php
+                        foreach ($tim as $t) {?>
+                        <option value="<?php echo $t->id_tim; ?>"><?php echo $t->nama_tim; ?></option>
+                        <?php
+                        } ?>
+                    </select>
+                    <?= form_error('id_tim', '<small class="text-danger">', '</small>') ?>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-sm-6 mb-3 mb-sm-0">
+                        <label>Tanggal Mulai :</label>
+                        <input
+                            type="date"
+                            class="form-control form-control-user"
+                            id="tgl_mulai"
+                            name="tgl_mulai"
+                            value="<?= $k->tgl_mulai ?>">
+                        <?= form_error('tgl_mulai', '<small class="text-danger">', '</small>') ?>
                     </div>
+                   <div class="col-sm-6 mb-3 mb-sm-0">
+                        <label>Tanggal Selesai :</label>
 
-                    <div class="form-group">
-                        <label>Username :</label>
-                        <input type="text" class="form-control form-control-user" id="username" name="username" placeholder="Username" value="<?= $p->username ?>">
-
-                        <?= form_error('username', '<small class="text-danger">', '</small>') ?>
+                        <input
+                            type="date"
+                            class="form-control form-control-user"
+                            id="tgl_selesai"
+                            name="tgl_selesai"
+                            placeholder="Nama Kegiatan"
+                            value="<?= $k->tgl_selesai ?>">
+                        <?= form_error('tgl_selesai', '<small class="text-danger">', '</small>') ?>
                     </div>
+                </div>
 
-                    <div class="form-group">
-                        <input type="email" class="form-control form-control-user" id="email" name="email" placeholder="email" value="<?= $p->email ?>">
-
-                        <?= form_error('email', '<small class="text-danger">', '</small>') ?>
+                <div class="form-group row">
+                    <div class="col-sm-6 mb-3 mb-sm-0">
+                        <select
+                            class="selectpicker form-control"
+                            data-live-search="true"
+                            name="id_periode">
+                            <option value="<?=$k->id_periode?>"><?=  $k->nama_periode ?></option>
+                            <?php
+                             foreach ($periode as $p) {?>
+                            <option value="<?php echo $p->id_periode; ?>"><?php echo $p->nama_periode; ?></option>
+                            <?php
+                                    } ?>
+                        </select>
+                        <?= form_error('id_periode', '<small class="text-danger">', '</small>') ?>
                     </div>
+                </div>
 
-
-                    <label>Password :</label>
-                    <div class="form-group row">
-                        
-                        <div class="col-sm-6 mb-3 mb-sm-0">
-                            <input type="password" class="form-control form-control-user" id="password1" name="password1" placeholder="Password Baru" value="<?= set_value('password1') ?>">
-
-                            <?= form_error('password1', '<small class="text-danger">', '</small>') ?>
-                        </div>
-
-                        <div class="col-sm-6">
-                            <input type="password" class="form-control form-control-user" id="password2" name="password2" placeholder="Ulangi Password Baru" value="<?= set_value('password2') ?>">
-                            
-                             <?= form_error('password2', '<small class="text-danger">', '</small>') ?>
-                        </div>
+                <div class="form-group row">
+                    <div class="col-sm-6 mb-3 mb-sm-0">
+                        <select
+                            class="selectpicker form-control"
+                            data-live-search="true"
+                            name="id_jenis_kegiatan">
+                            <option value="<?= $k->id_jenis_kegiatan?>"><?= $k->nama_jenis_kegiatan ?></option>
+                            <?php
+                            foreach ($jenis_kegiatan as $jk) {?>
+                            <option value="<?php echo $jk->id_jenis_kegiatan; ?>"><?php echo $jk->nama_jenis_kegiatan; ?></option>
+                            <?php
+                                    } ?>
+                        </select>
+                        <?= form_error('id_satuan', '<small class="text-danger">', '</small>') ?>
                     </div>
-                    <p class="text-small text-primary mt-1">Password minimal 6 karakter. Kosongkan password jika tidak ingin mengubah</p>
-                    
+                </div>
 
-                    <button type="submit" class="btn btn-primary add-success">Update</button>
-                    <a href="<?= base_url('pegawai') ?>" class="btn btn-outline-danger ml-3">Cancel</a>
-                </form>
+                <div class="form-group row">
+                    <div class="col-sm-6 mb-3 mb-sm-0">
+                        <select
+                            class="selectpicker form-control"
+                            data-live-search="true"
+                            name="id_satuan">
+                            <option value="<?= $k->id_satuan?>"><?= $k->nama_satuan  ?></option>
+                            <?php
+                            foreach ($satuan as $s) {?>
+                            <option value="<?php echo $s->id_satuan; ?>"><?php echo $s->nama_satuan; ?></option>
+                            <?php
+                                    } ?>
+                        </select>
+                        <?= form_error('id_satuan', '<small class="text-danger">', '</small>') ?>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn btn-primary add-success">Update</button>
+                <a href="<?= base_url('pegawai') ?>" class="btn btn-outline-danger ml-3">Cancel</a>
+            </form>
             <?php endforeach; ?>
         </div>
     </div>
@@ -71,12 +138,13 @@
 </div>
 <!-- End of Main Content -->
 <script>
-    $('.add-succsess').on('click', function(e) {
+$('.add-succsess').on('click', function (e) {
 
-        e.preventDefault();
-        const href = $(this).attr('href');
+    e.preventDefault();
+    const href = $(this).attr('href');
 
-        Swal.fire({
+    Swal
+        .fire({
             title: 'Apakah anda yakin?',
             text: "Data akan dihapus",
             icon: 'success',
@@ -84,18 +152,16 @@
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
             confirmButtonText: 'Tambah'
-        }).then((result) => {
+        })
+        .then((result) => {
             if (result.isConfirmed) {
                 document.location.href = href;
-                Swal.fire({
-                    title: 'Deleted!',
-                    text: "Data berhasil dihapus.",
-                    icon: 'success',
-                    showConfirmButton: false
-                })
+                Swal.fire(
+                    {title: 'Deleted!', text: "Data berhasil dihapus.", icon: 'success', showConfirmButton: false}
+                )
             }
         })
-    })
+})
 </script>
 
 <?php $this->view('admin-templates/footer') ?>

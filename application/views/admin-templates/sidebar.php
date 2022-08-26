@@ -4,7 +4,7 @@
      <!-- Sidebar - Brand -->
      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="<?= base_url('admin') ?>">
          <div class="sidebar-brand-icon rotate-n-15">
-             <i class="fas fa-envelope-open-text"></i>
+             <i class="fas fa-chart-line"></i>
          </div>
          <div class="sidebar-brand-text mx-3">MONCAKE</div>
      </a>
@@ -86,6 +86,11 @@
          <a class="nav-link" href="<?= base_url('periode') ?>">             
              <i class="fas fa-fw fa-list-alt"></i>
              <span>Periode</span></a>
+     </li>
+     <li class="nav-item">
+         <a class="nav-link" href="<?= base_url('satuan') ?>">             
+             <i class="fas fa-fw fa-list-alt"></i>
+             <span>Satuan</span></a>
      </li>
           <li class="nav-item">
          <a class="nav-link" href="<?= base_url('role') ?>">             

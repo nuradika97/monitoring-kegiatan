@@ -118,6 +118,34 @@
                         <?= form_error('id_satuan', '<small class="text-danger">', '</small>') ?>
                     </div>
                 </div>
+                <div class="form-group row">
+                    <div class="col-sm-2 mb-3 mb-sm-0 text-center border-bottom-primary">
+                        <label>Kode Satker</label>
+                    </div>
+                    <div class="col-sm-2 text-center border-bottom-primary">
+                        <label>Nilai Target</label>
+                    </div>
+                </div>
+
+                <?php foreach ($satker as $st) { ?>
+                <div class="form-group row">
+                    <div class="col-sm-2 mb-3 mb-sm-0 text-center border">
+                        <label value="<?= set_value($st->kode_satker)?>"><?= $st->kode_satker  ?></label>
+                    </div>
+                    <div class="col-sm-2">
+                        <input name="id_satker[]" value="<?= $st->id_satker ?>" hidden>
+                        <!-- <input name="kode_satker[]" value="<?= $st->id_satker ?>" hidden> -->
+                        <input
+                            type="number"
+                            class="form-control form-control-user text-center"
+                            id="target"
+                            name="target"
+                            placeholder="Nilai"
+                            value="<?= set_value('target') ?>">
+                        <!-- <?= form_error('target', '<small class="text-danger">', '</small>') ?> -->
+                    </div>
+                </div>
+                <?php } ?>
 
                 <button type="submit" class="btn btn-primary btn_register btn-block mt-3">Simpan</button>
             </form>

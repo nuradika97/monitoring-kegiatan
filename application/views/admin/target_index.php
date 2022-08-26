@@ -35,6 +35,9 @@
                             <th class="text-center">Jenis Kegiatan</th>
                             <th class="text-center">Periode</th>
                             <th class="text-center">Satuan</th>
+                            <th class="text-center">Target</th>
+                            <th class="text-center  ">Realiasi</th>
+                            <th class="text-center">%</th>
                             <th class="text-center">Aksi</th>
                         </thead>
                     </tr>
@@ -46,15 +49,17 @@
                                 <td class="text-center"><?= $no++ ?></td>
                                 <td><?= $k->nama_kegiatan ?></td>
                                 <td><b><?= $k->nama_tim ?></b></td>
-                                <td><?= date('d/m/Y', strtotime($k->tgl_mulai)) ?></td>
-                                <td><?= date('d/m/Y', strtotime($k->tgl_selesai)) ?></td>
+                                <td><?= $k->tgl_mulai ?></td>
+                                <td><?= $k->tgl_selesai?></td>
                                 <td><?= $k->nama_jenis_kegiatan?></td>
                                 <td><?= $k->nama_periode?></td>
                                 <td><?= $k->nama_satuan ?></td>
-                               
+                                <td><?= $k->target ?></td>
+                                <td><?= '0' ?></td>
+                                <td><?= '0'  ?></td>
 
-                                <td class="text-center row">
-                                    <a href="<?= base_url('kegiatan/edit_kegiatan/') . $k->id_kegiatan ?>" class="btn btn-warning btn-sm" data-toggle="tooltip" data-placement="top" title="Update">
+                                <td class="text-center">
+                                    <a href="<?= base_url('kegiatan/edit_kegiatan/') . $k->id_kegiatan ?>" class="btn btn-warning btn-sm mr-2" data-toggle="tooltip" data-placement="top" title="Update">
                                         <i class="fa fa-edit"></i>
                                     </a>
                                     <a href="<?= base_url('kegiatan/delete_kegiatan/') . $k->id_kegiatan ?>" class="btn btn-danger btn-sm delete-button" data-toggle="tooltip" data-placement="top" title="Delete">

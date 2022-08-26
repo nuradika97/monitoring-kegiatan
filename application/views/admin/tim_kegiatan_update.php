@@ -30,7 +30,7 @@
                         name="id_timkeg"
                         value="<?= $e->id_timkeg ?>">
                     <label>Nama Tim Kegiatan :</label>
-                    <select class="form-control" name="id_tim">
+                    <select class="selectpicker form-control" data-live-search="true" name="id_tim">
                         <option value="<?= $e->id_tim ?>"><?= $e->nama_tim ?></option>
                         <?php foreach($tim as $t) : ?>
                         <option value="<?php echo $t->id_tim; ?>"><?php echo $t->nama_tim; ?></option>
@@ -40,7 +40,7 @@
                 </div>
                  <div class="form-group">
                     <label>Nama Pegawai :</label>
-                    <select class="form-control" name="id_pegawai">
+                    <select class="selectpicker form-control" data-live-search="true" name="id_pegawai">
                         <option value="<?= $e->id_pegawai ?>"><?= $e->nama_pegawai ?></option>
                         <?php foreach($pegawai as $p) : ?>
                         <option value="<?php echo $p->id_pegawai; ?>"><?php echo $p->nama_pegawai; ?></option>
@@ -50,7 +50,7 @@
                 </div>
                 <div class="form-group">
                     <label>Role  :</label>
-                    <select class="form-control" name="id_role">
+                    <select class="selectpicker form-control" data-live-search="true" name="id_role">
                         <option value="<?= $e->id_role ?>"><?= $e->nama_role ?></option>
                         <?php foreach($role as $r) : ?>
                         <option value="<?php echo $r->id_role; ?>"><?php echo $r->nama_role; ?></option>
