@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Kegiatan extends CI_Controller {
+class Laporan_kegiatan extends CI_Controller {
 
 	function __construct(){
 		parent::__construct();
@@ -9,130 +9,76 @@ class Kegiatan extends CI_Controller {
 		is_logged_in();
 	}
 
-	function index(){
-      
+	function index($id){
+
         //  $data['user']  = $this->db->get_where('kegiatan', ['username'
         //     => $this->session->userdata('username')])->row_array();
-        $data['kegiatan'] = $this->M_kegiatan->get_kegiatan_all()->result();
-		$this->load->view('admin/kegiatan_index', $data);
+        $data['kegiatan'] = $this->M_kegiatan->get_kegiatan_by_id($id)->result();
+        $data['detail_kegiatan'] = $this->M_detail_kegiatan->get_detail_kegiatan_group_by()->result();
+        // $data['detail_kegiatan'] = $this->M_detail_kegiatan->get_detail_kegiatan_all()->result();
+		$this->load->view('admin/detail_kegiatan_index', $data);
         
 	}	
 
-    function kegiatan_add(){   	
-        
+    function detail_kegiatan_add($id){   	
         $data['tim'] = $this->M_tim->get_tim_all()->result();
         $data['periode'] = $this->M_periode->get_periode_all()->result();
         $data['satuan'] = $this->M_satuan->get_satuan_all()->result();
         $data['jenis_kegiatan'] = $this->M_jenis_kegiatan->get_jenis_kegiatan_all()->result();
         $data['satker'] = $this->M_satker->get_satker_all()->result();
-        $this->load->view('admin/kegiatan_add', $data);
+        $data['kegiatan'] = $this->M_kegiatan->get_kegiatan_by_id($id)->result();
+        $data['id'] = $id;
+        // var_dump($data['id']);
+        // die();
+        // $data['detail_kegiatan'] = $this->M_detail_kegiatan->get_detail_kegiatan_sum($id)->result();
+        $this->load->view('admin/detail_kegiatan_add', $data);
         
     }
 
-    function add_kegiatan_act(){
+    function add_detail_kegiatan_act(){
 
-        $nama_kegiatan = $this->input->post('nama_kegiatan');
-		$id_tim = $this->input->post('id_tim');
-		$tgl_mulai = $this->input->post('tgl_mulai');
-        $tgl_selesai = $this->input->post('tgl_selesai');
-        $id_periode = $this->input->post('id_periode');
-        $id_jenis_kegiatan = $this->input->post('id_jenis_kegiatan');
-        $id_satuan = $this->input->post('id_satuan');
-        $id_satker = $this->input->post('id_satker');
+        $id_kegiatan = $this->input->post('id_kegiatan');
+        $nama_detail_kegiatan = $this->input->post('nama_detail_kegiatan');
         // $kode_satker = $this->input->post('kode_satker');
-        $target = $this->input->post('target');
        
            
-        // var_dump($data);
+        // var_dump($id_kegiatan);
         // die();
    
 
-         $this->form_validation->set_rules('nama_kegiatan','Nama Kegiatan','required',
+         $this->form_validation->set_rules('nama_detail_kegiatan','Nama Detail Kegiatan Kegiatan','required',
             array(
                 'required' => '%s harus diisi'
             )
             );
-            $this->form_validation->set_rules('id_tim','Nama Tim','required',
-            array(
-                'required' => '%s harus dipilih'
-            )
-            );
-            $this->form_validation->set_rules('id_periode','Periode','required',
-            array(
-                'required' => '%s harus dipilih'
-            )
-            );
-            $this->form_validation->set_rules('id_jenis_kegiatan','Jenis Kegiatan','required',
-            array(
-                'required' => '%s harus dipilih'
-            )
-            );
-            $this->form_validation->set_rules('id_satuan','Satuan','required',
-            array(
-                'required' => '%s harus dipilih'
-            )
-            );
           
-      
-
-           $validasi = array(
-                array('field' => 'tgl_mulai', 'label' => 'Tanggal Mulai', 'rules' => 'required|callback_compareDate'),
-                    array('field' => 'tgl_selesai', 'label' => 'Tanggal Selesai', 'rules' => 'required|callback_compareDate'),
-                );
-            $this->form_validation->set_rules($validasi);
-            $this->form_validation->set_message('required', '%s is required.');
-            
-            
-      
             
         if($this->form_validation->run() != false){
 
-             for($i = 1; $i < count($id_satker); $i++) :
-
-               $data[] = array(
-                'id_satker' => $id_satker[$i],
-                'nama_kegiatan' =>  $nama_kegiatan,
-                'id_tim' =>  $id_tim,
-                'tgl_mulai' => $tgl_mulai,
-                'tgl_selesai' => $tgl_selesai,
-                'id_periode' => $id_periode,
-                'id_jenis_kegiatan' => $id_jenis_kegiatan,
-                'id_satuan' => $id_satuan,
-                'target' => $target
-
-            );
-       
-            // foreach([$id_satker] as $key=>$value){
-                // $data[] = array(
-                    //     'id_satker' => $value,
-                    //     'nama_kegiatan' =>  $nama_kegiatan,
-                    //     'id_tim' =>  $id_tim,
-            //     'tgl_mulai' => $tgl_mulai,
-            //     'tgl_selesai' => $tgl_selesai,
-            //     'id_periode' => $id_periode,
-            //     'id_jenis_kegiatan' => $id_jenis_kegiatan,
-            //     'id_satuan' => $id_satuan,
-            //     'target' => $target
+        
+               $data = [
+                   'id_kegiatan' => $id_kegiatan,
+                   'detail_kegiatan' =>  $nama_detail_kegiatan,
+                   'created_at' => date('Y-m-d H:i:s'),
+                   ];
             
-            // );
-            // }
-       
+        
+            $data['id'] = $this->input->post('id_kegiatan');
+			$this->M_detail_kegiatan->insert_detail_kegiatan($data,'detail_kegiatan');
             
-        endfor;
-        // var_dump($data);
-        // die();
-			$this->M_kegiatan->insert_kegiatan($data,'kegiatan');
-       
             $this->session->set_flashdata('message', '<div class="alert alert-success"><b>Data Berhasil Ditambahkan!</b></div>');
-			redirect(base_url().'kegiatan');
+			redirect(base_url().'detail_kegiatan');
             
 		}else{
+            $id = $this->input->post('id_kegiatan');
+            $data['id_kegiatan'] = $this->input->post('id_kegiatan');
             $data['tim'] = $this->M_tim->get_tim_all()->result();
             $data['periode'] = $this->M_periode->get_periode_all()->result();
             $data['satuan'] = $this->M_satuan->get_satuan_all()->result();
             $data['jenis_kegiatan'] = $this->M_jenis_kegiatan->get_jenis_kegiatan_all()->result();
             $data['satker'] = $this->M_satker->get_satker_all()->result();
-		     $this->load->view('admin/kegiatan_add', $data);
+            $data['kegiatan'] = $this->M_kegiatan->get_kegiatan_by_id($id)->result();
+		    $this->load->view('admin/detail_kegiatan_add', $data);
           }
         }
 
@@ -230,13 +176,13 @@ class Kegiatan extends CI_Controller {
           }
         }
 
-    function delete_kegiatan($id){	   
+    function delete_detail_kegiatan($id){	   
 		$where = array(
 			'id_kegiatan' => $id		
 		);
-		$this->M_kegiatan->delete_kegiatan($where,'kegiatan');		
+		$this->M_kegiatan->delete_detail_kegiatan($where,'kegiatan');		
         $this->session->set_flashdata('message', '<div class="alert alert-warning"><b>Data Berhasil Dihapus!</b></div>');
-		redirect(base_url().'kegiatan');
+		redirect(base_url().'detail_kegiatan');
 
 	}
 

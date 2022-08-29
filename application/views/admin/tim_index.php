@@ -28,6 +28,7 @@
                             <th class="text-center">No</th>
                             <th class="text-center">kode Tim</th>
                             <th class="text-center">Nama Tim</th>
+                            <th class="text-center">Ketua Tim</th>
                             <th class="text-center">Aksi</th>
 
                         </tr>
@@ -40,6 +41,7 @@
                                 <td class="text-center"><?= $no++ ?></td>
                                 <td><?= $a->kode_tim ?></td>
                                 <td><b><?= $a->nama_tim ?></b></td>
+                                <td><b><?= $a->nama_pegawai ?></b></td>
                                
                                 <td class="text-center">
                                     <a href="<?= base_url('tim/edit_tim/') . $a->id_tim ?>" class="btn btn-warning btn-sm mr-2" data-toggle="tooltip" data-placement="top" title="Update">

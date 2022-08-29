@@ -13,18 +13,18 @@ class Tim extends CI_Controller {
       
         //  $data['user']  = $this->db->get_where('tim', ['username'
         //     => $this->session->userdata('username')])->row_array();
-      
+        $data['pegawai'] = $this->M_pegawai->get_pegawai_all()->result();
         $data['tim'] = $this->M_tim->get_tim_all()->result();
 		$this->load->view('admin/tim_index', $data);
         
 	}	
 
     function tim_add(){   	
-            // $data['user']  = $this->db->get_where('tim', ['username'
-            // => $this->session->userdata('username')])->row_array();
 		/* session dari tim kegiatan */
             // $this->load->view('admin/tim_add', $data);
-            $this->load->view('admin/tim_add');
+            $data['pegawai'] = $this->M_pegawai->get_pegawai_all()->result();
+            $data['tim'] = $this->M_tim->get_tim_all()->result();
+            $this->load->view('admin/tim_add', $data);
         
     }
 
@@ -32,6 +32,7 @@ class Tim extends CI_Controller {
         
         $kode_tim = $this->input->post('kode_tim');
 		$nama_tim = $this->input->post('nama_tim');
+		$ketua_tim = $this->input->post('ketua_tim');
 		
       
              $this->form_validation->set_rules(
@@ -46,13 +47,21 @@ class Tim extends CI_Controller {
 
                $this->form_validation->set_rules(
                     'nama_tim', 'Nama Tim',
-                    'required|alpha_numeric_spaces|min_length[3]|max_length[100]|is_unique[tim.nama_tim]',
+                    'required|min_length[3]|max_length[100]|is_unique[tim.nama_tim]',
                     array(
-                            'alpha_numeric_spaces' => '%s harus berupa alpha',
                             'min_length' => '%s minimal 4 Karakter',
-                            'max_length' => '%s maksimal 4 karakter',
+                            'max_length' => '%s maksimal 100 karakter',
                             'required'      => '%s harus diisi',
                             'is_unique'     => '%s Ini Sudah Ada'
+                    )
+            );
+               $this->form_validation->set_rules(
+                    'ketua_tim', 'Ketua Tim',
+                    'required|min_length[1]|max_length[2]',
+                    array(
+                            'min_length' => '%s minimal 1 Karakter',
+                            'max_length' => '%s maksimal 2 karakter',
+                            'required'      => '%s harus diisi',
                     )
             );
            
@@ -60,6 +69,7 @@ class Tim extends CI_Controller {
 			$data = array(
 				'kode_tim' => $kode_tim,
 				'nama_tim' => $nama_tim,			
+				'ketua_tim' => $ketua_tim		
 			);
 			$this->M_tim->insert_tim($data,'tim');
             $this->session->set_flashdata('message', '<div class="alert alert-success"><b>Data Berhasil Ditambahkan!</b></div>');
@@ -71,7 +81,6 @@ class Tim extends CI_Controller {
             // $id_tim = $this->session->userdata('id_tim');
             // $id_role = $this->session->userdata('id_role');
 		    $data['tim'] = $this->db->query("select * from tim order by id_tim")->result();
-
 		     $this->load->view('admin/tim_add', $data);
           }
         }
@@ -80,6 +89,7 @@ class Tim extends CI_Controller {
             $where = array(
                 'id_tim' => $id		
             );
+            $data['pegawai'] = $this->M_pegawai->get_pegawai_all()->result();
             $data['tim'] = $this->M_tim->edit_tim($where,'tim')->result();		
             
             $this->load->view('admin/tim_update', $data);
@@ -87,31 +97,47 @@ class Tim extends CI_Controller {
     
      function update_tim($id){				    
         
-       
+		$ketua_tim = $this->input->post('ketua_tim');
 		$nama_tim = $this->input->post('nama_tim');
 
-        $where = array(
-            'nama_tim' => $nama_tim
-            );
+        // $where = array(
+        //     'nama_tim' => $nama_tim
+        //     );
     /* Jika nama tim tidak sama dengan yang ada didatabase maka 
     lakukan perubahan jika nama tim sama maka validasi nama tim sudah ada*/     
 
-    $cek_knm_tim = $this->M_tim->cek_knm_tim('tim', $where)->row('nama_tim');
+    // $cek_knm_tim = $this->M_tim->cek_knm_tim('tim', $where)->row('nama_tim');
         
-        if($cek_knm_tim == NULL){
+        // if($cek_knm_tim == NULL){
 
                $this->form_validation->set_rules(
                
                 'nama_tim', 'Nama Tim',
-                'required|alpha_spaces|min_length[3]|max_length[100]|is_unique[tim.nama_tim]',
+                // 'required|min_length[3]|max_length[100]|is_unique[tim.nama_tim]',
+                'required|min_length[3]|max_length[100]',
                 array(
-                    'alpha_spaces' => '%s Harus huruf ',
+                    // 'alpha_spaces' => '%s Harus huruf ',
                     'min_length' => '%s minimal 4 Karakter',
                     'max_length' => '%s maksimal 4 karakter',
                     'required'      => '%s harus diisi',
-                    'is_unique'     => '%s Ini Sudah Ada'
+                    // 'is_unique'     => '%s Ini Sudah Ada'
                     )
                 );
+
+                $this->form_validation->set_rules(
+               
+                'ketua_tim', 'Ketua Tim',
+                // 'required|min_length[3]|max_length[100]|is_unique[tim.nama_tim]',
+                'required|min_length[1]|max_length[2]',
+                array(
+                    // 'alpha_spaces' => '%s Harus huruf ',
+                    'min_length' => '%s minimal 4 Karakter',
+                    'max_length' => '%s maksimal 4 karakter',
+                    'required'      => '%s harus diisi',
+                    // 'is_unique'     => '%s Ini Sudah Ada'
+                    )
+                );
+
 
         if ($this->form_validation->run() != false){
             
@@ -119,10 +145,15 @@ class Tim extends CI_Controller {
                 'id_tim' => $id
             );
             $data = array(
-                'nama_tim' => $nama_tim	
+                'nama_tim' => $nama_tim,
+                'ketua_tim' => $ketua_tim	
             );
+
+                // var_dump($data);
+                // die();
+
             
-            $this->M_tim->update_tim($where,$data,'tim');
+             $this->M_tim->update_tim($where,$data,'tim');
              $this->session->set_flashdata('message', '<div class="alert alert-success"><b>Data Berhasil Diubah!</b></div>');
             redirect(base_url().'tim');
         } else {
@@ -135,31 +166,32 @@ class Tim extends CI_Controller {
         }
                 
         
-    } else { 
+    // } else { 
         
-        $this->form_validation->set_rules(
+    //     $this->form_validation->set_rules(
         
-        'nama_tim', 'Nama Tim',
-        'required|alpha|min_length[3]|max_length[100]|is_unique[tim.nama_tim]',
-                array(
-                    'alpha' => '%s harus berupa alpha',
-                    'min_length' => '%s minimal 4 Karakter',
-                    'max_length' => '%s maksimal 4 karakter',
-                    'required'      => '%s harus diisi',
-                    'is_unique'     => '%s Ini Sudah Ada'
-                    )
-                );
+    //     'nama_tim', 'Nama Tim',
+    //     // 'required|alpha|min_length[3]|max_length[100]|is_unique[tim.nama_tim]',
+    //     'required|min_length[3]|max_length[100]',
+    //             array(
+    //                 // 'alpha' => '%s harus berupa alpha',
+    //                 'min_length' => '%s minimal 4 Karakter',
+    //                 'max_length' => '%s maksimal 4 karakter',
+    //                 'required'      => '%s harus diisi',
+    //                 // 'is_unique'     => '%s Ini Sudah Ada'
+    //                 )
+    //             );
 
-                if ($this->form_validation->run() != true){
+    //             if ($this->form_validation->run() != true){
                 
-                    $where = array(
-                    'id_tim' => $id		
-                    );
-                $data['tim'] = $this->M_tim->edit_tim($where,'tim')->result();		
-                $this->load->view('admin/tim_update', $data);
-            }
+    //                 $where = array(
+    //                 'id_tim' => $id		
+    //                 );
+    //             $data['tim'] = $this->M_tim->edit_tim($where,'tim')->result();		
+    //             $this->load->view('admin/tim_update', $data);
+    //         }
                         
-            }
+            // }
             
 }
 
@@ -168,8 +200,8 @@ class Tim extends CI_Controller {
 			'id_tim' => $id		
 		);
 		$this->M_tim->delete_tim($where,'tim');		
+        $this->session->set_flashdata('message', '<div class="alert alert-warning"><b>Data Berhasil Dihapus!</b></div>');
 		redirect(base_url().'tim');
-         $this->session->set_flashdata('message', '<div class="alert alert-warning"><b>Data Berhasil Dihapus!</b></div>');
 	}
 
 

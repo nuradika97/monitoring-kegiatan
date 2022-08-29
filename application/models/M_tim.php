@@ -12,7 +12,10 @@ class M_tim extends CI_Model
 
     public function get_tim_all()
     {
-        return $this->db->get('tim');
+        $this->db->select('*');
+        $this->db->from('tim');
+        $this->db->join('pegawai', 'pegawai.id_pegawai = tim.ketua_tim');
+        return $this->db->get();
     }
 
     public function insert_tim($data,$table){
@@ -20,7 +23,11 @@ class M_tim extends CI_Model
 	}
 
   	function edit_tim($where,$table){
-		return $this->db->get_where($table,$where);
+         $this->db->select('*');
+        $this->db->from($table);
+        $this->db->join('pegawai', 'pegawai.id_pegawai = tim.ketua_tim');
+        $this->db->where($where);
+		return $this->db->get();
 	}
 
     function update_tim($where,$data,$table){

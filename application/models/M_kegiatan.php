@@ -4,10 +4,16 @@ class M_kegiatan extends CI_Model
 {
 
 
-    public function get_kegiatan_by_id($id)
+    function get_kegiatan_by_id($id)
     {
+         $this->db->select('*');
+        $this->db->from('kegiatan');
+        $this->db->join('tim', 'kegiatan.id_tim = tim.id_tim');
+        $this->db->join('satuan', 'kegiatan.id_satuan = satuan.id_satuan');
+        $this->db->join('jenis_kegiatan', 'kegiatan.id_jenis_kegiatan = jenis_kegiatan.id_jenis_kegiatan');
+        $this->db->join('periode', 'kegiatan.id_periode = periode.id_periode');
         $this->db->where('id_kegiatan', $id);
-        return $this->db->get('kegiatan');
+        return $this->db->get();
     }
 
     function get_kegiatan_all()
@@ -73,5 +79,8 @@ class M_kegiatan extends CI_Model
     }
     return $this->db->insert_id();
     } //END FUNCTION//
+
+
+    
 
 }

@@ -31,6 +31,19 @@
                 <?= form_error('nama_tim', '<small class="text-danger">', '</small>') ?>
                 </div>
 
+                <div class="form-group">
+                    <select class="selectpicker form-control" data-live-search="true" name="ketua_tim">
+                        <option value="<?= set_value('ketua_tim') ?>">-- Pilih Ketua Tim --</option>
+                        <?php
+                        foreach ($pegawai as $p) {?>
+                        <option value="<?php echo $p->id_pegawai; ?>"><?php echo $p->nama_pegawai; ?></option>
+                        <?php
+                        } ?>
+                    </select>
+                    <?= form_error('ketua_tim', '<small class="text-danger">', '</small>') ?>
+                </div>
+
+               
                 <button type="submit" class="btn btn-primary  btn_register btn-block mt-3">Simpan</button>
             </form>
         </div>

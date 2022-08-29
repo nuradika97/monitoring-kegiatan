@@ -72,8 +72,8 @@ class Kegiatan extends CI_Controller {
             );
           
 
-           $validasi = array(
-                array('field' => 'tgl_mulai', 'label' => 'Tanggal Mulai', 'rules' => 'required|callback_compareDate'),
+            $validasi = array(
+                    array('field' => 'tgl_mulai', 'label' => 'Tanggal Mulai', 'rules' => 'required|callback_compareDate'),
                     array('field' => 'tgl_selesai', 'label' => 'Tanggal Selesai', 'rules' => 'required|callback_compareDate'),
                 );
             $this->form_validation->set_rules($validasi);
@@ -129,10 +129,6 @@ class Kegiatan extends CI_Controller {
         $id_satuan = $this->input->post('id_satuan');
        
            
-        // var_dump($data);
-        // die();
-   
-
          $this->form_validation->set_rules('nama_kegiatan','Nama Kegiatan','required',
             array(
                 'required' => '%s harus diisi'
@@ -161,7 +157,7 @@ class Kegiatan extends CI_Controller {
           
 
            $validasi = array(
-                array('field' => 'tgl_mulai', 'label' => 'Tanggal Mulai', 'rules' => 'required|callback_compareDate'),
+                    array('field' => 'tgl_mulai', 'label' => 'Tanggal Mulai', 'rules' => 'required|callback_compareDate'),
                     array('field' => 'tgl_selesai', 'label' => 'Tanggal Selesai', 'rules' => 'required|callback_compareDate'),
                 );
             $this->form_validation->set_rules($validasi);
@@ -178,8 +174,6 @@ class Kegiatan extends CI_Controller {
             'id_jenis_kegiatan' => $id_jenis_kegiatan,
             'id_satuan' => $id_satuan,
          );
-            // var_dump($id_kegiatan);
-            // die();
        
 			$this->M_kegiatan->update_kegiatan($id_kegiatan, $data,'kegiatan');
             $this->session->set_flashdata('message', '<div class="alert alert-success"><b>Data Berhasil Diubah!</b></div>');
@@ -215,8 +209,7 @@ class Kegiatan extends CI_Controller {
 		$tgl_mulai = $_POST['tgl_mulai'];
 		$tgl_selesai = $_POST['tgl_selesai'];
 		$tgl_sekarang = date("Y-m-d h:i");
-		// var_dump($tgl_selesai);
-		// die();
+	
 
 		if ($tgl_selesai >= $tgl_mulai) {
 			return True;

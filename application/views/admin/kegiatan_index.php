@@ -54,6 +54,9 @@
                                
 
                                 <td class="text-center row">
+                                    <a href="<?= base_url('detail_kegiatan/index/') . $k->id_kegiatan ?>" class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="top" title="Detail">
+                                        <i class="fa fa-pen"></i>
+                                    </a>
                                     <a href="<?= base_url('kegiatan/edit_kegiatan/') . $k->id_kegiatan ?>" class="btn btn-warning btn-sm" data-toggle="tooltip" data-placement="top" title="Update">
                                         <i class="fa fa-edit"></i>
                                     </a>
