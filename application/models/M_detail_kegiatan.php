@@ -57,18 +57,18 @@ class M_detail_kegiatan extends CI_Model
   	function edit_detail_kegiatan($id){
         $this->db->select('*');
         $this->db->from('detail_kegiatan');
-        $this->db->join('kegiatan','detail_kegiatan.id_kegiatan = kegiatan.id_kegiatan');
-        $this->db->join('tim', 'kegiatan.id_tim = tim.id_tim');
-        $this->db->join('satuan', 'kegiatan.id_satuan = satuan.id_satuan');
-        $this->db->join('jenis_kegiatan', 'kegiatan.id_jenis_kegiatan = jenis_kegiatan.id_jenis_kegiatan');
-        $this->db->join('periode', 'kegiatan.id_periode = periode.id_periode');
+        // $this->db->join('kegiatan','detail_kegiatan.id_kegiatan = kegiatan.id_kegiatan');
+        // $this->db->join('tim', 'kegiatan.id_tim = tim.id_tim');
+        // $this->db->join('satuan', 'kegiatan.id_satuan = satuan.id_satuan');
+        // $this->db->join('jenis_kegiatan', 'kegiatan.id_jenis_kegiatan = jenis_kegiatan.id_jenis_kegiatan');
+        // $this->db->join('periode', 'kegiatan.id_periode = periode.id_periode');
         $this->db->where('id_detail_kegiatan', $id);
         return $this->db->get();
 	}
 
-    function update_detail_kegiatan($where,$data,$table){
-		$this->db->where('id_detail_kegiatan', $where);
-		$this->db->update($table,$data);
+    function update_detail_kegiatan($where,$data){
+		$this->db->where('id_detail_kegiatan',$where);
+		$this->db->update('detail_kegiatan', $data);
 	}
 
     public function delete_detail_kegiatan($where,$table)
@@ -101,5 +101,17 @@ class M_detail_kegiatan extends CI_Model
     }
     return $this->db->insert_id();
     } //END FUNCTION//
+
+     function cek_tanggal_kegiatan()
+    {
+        $this->db->select('detail_kegiatan.id_kegiatan,kegiatan.tgl_mulai, kegiatan.tgl_selesai');
+        $this->db->from('detail_kegiatan');
+        $this->db->join('kegiatan','detail_kegiatan.id_kegiatan = kegiatan.id_kegiatan');
+        // $this->db->where('id_detail_kegiatan', $id);
+        $this->db->group_by('id_kegiatan');
+        return $this->db->get();
+
+    }
+
 
 }

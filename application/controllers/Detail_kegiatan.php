@@ -45,72 +45,152 @@ class Detail_kegiatan extends CI_Controller {
     function add_detail_kegiatan_act(){
 
         $id_kegiatan = $this->input->post('id_kegiatan');
-        $nama_detail_kegiatan = $this->input->post('nama_detail_kegiatan');
+        $detail_kegiatan = $this->input->post('detail_kegiatan');
+        $tgl_mulai = $this->input->post('tgl_mulai');
+        $tgl_selesai = $this->input->post('tgl_selesai');
 
-         $this->form_validation->set_rules('nama_detail_kegiatan','Nama Detail Kegiatan Kegiatan','required',
+        
+
+            //   var_dump($id_kegiatan);
+            //    die();
+
+         $this->form_validation->set_rules('detail_kegiatan','Nama Detail Kegiatan Kegiatan','required',
             array(
                 'required' => '%s harus diisi'
             )
             );
+
+            $cek_tanggal = $this->M_detail_kegiatan->cek_tanggal_kegiatan()->result();
+         foreach ($cek_tanggal as $ct){
+                  $cek_tgl_mulai = $ct->tgl_mulai;
+                  $cek_tgl_selesai = $ct->tgl_selesai;
+            }
+
+            $validasi = array(
+                    array('field' => 'tgl_mulai', 'label' => 'Tanggal Mulai', 'rules' => 'required|callback_compareDate'),
+                    array('field' => 'tgl_selesai', 'label' => 'Tanggal Selesai', 'rules' => 'required|callback_compareDate'),
+                );
+            $this->form_validation->set_rules($validasi);
+            $this->form_validation->set_message('required', '%s harus diisi.');
+            
+            if($tgl_mulai < $cek_tgl_mulai) {
+                $this->form_validation->set_rules('tgl_mulai', 'Tanggal Mulai', 'rule1',
+                array('rule1' => '%s <b>Detail kegiatan</b> tidak boleh melebih <b>Rentan Waktu Kegiatan</b>')
+                );
+            } elseif($tgl_selesai > $cek_tgl_selesai){
+                
+                $this->form_validation->set_rules('tgl_selesai', 'Tanggal Mulai', 'rule2',
+                array('rule2' => '%s <b>Detail kegiatan</b> tidak boleh melebih <b>Rentan Waktu Kegiatan</b>')
+                );
+            }
           
         if($this->form_validation->run() != false){
 
                $data = array(
                    'id_kegiatan' => $id_kegiatan,
-                   'detail_kegiatan' =>  $nama_detail_kegiatan,
+                   'detail_kegiatan' =>  $detail_kegiatan,
+                   'tgl_mulai' =>  $tgl_mulai,
+                   'tgl_selesai' =>  $tgl_selesai,
                    'created_at' => date('Y-m-d H:i:s')
                );
-            
-			$this->M_detail_kegiatan->insert_detail_kegiatan($data,'detail_kegiatan');
-            $this->session->set_flashdata('message', '<div class="alert alert-success"><b>Data Berhasil Ditambahkan!</b></div>');
-            $this->index($id_kegiatan);
+             
+            $this->M_detail_kegiatan->insert_detail_kegiatan($data, 'detail_kegiatan');
+            $this->session->set_flashdata('message', '<div class="alert alert-warning"><b>Data Berhasil Diubah!</b></div>');
+            foreach ($id_kegiatan as $ik){
+                  $id_kegiatan = $ik->id_kegiatan;
+            }
+
+
+             redirect(base_url().'detail_kegiatan/index/'.$id_kegiatan);
+        
             
 		}else{
-            $id = $this->input->post('id_kegiatan');
             $data['id_kegiatan'] = $this->input->post('id_kegiatan');
-            $data['kegiatan'] = $this->M_kegiatan->get_kegiatan_by_id($id)->result();
+            $data['kegiatan'] = $this->M_kegiatan->get_kegiatan_by_id($id_kegiatan)->result();
+             $data['ketuatim'] = $this->M_detail_kegiatan->get_ketua_tim($id_kegiatan)->result();
+            $data['detail_kegiatan'] = $this->M_detail_kegiatan->get_detail_kegiatan_by_id($id_kegiatan)->result();	
 		    $this->load->view('admin/detail_kegiatan_add', $data);
+            // redirect(base_url().'detail_kegiatan/add_detail_kegiatan_act/'.$id_kegiatan);
           }
         }
 
-     function edit_kegiatan($id){				
+     function edit_detail_kegiatan($id){				
             $where = array(
                 'id_detail_kegiatan' => $id		
             );
-            $data['detail_kegiatan'] = $this->M_detail_kegiatan->edit_detail_kegiatan($id,'kegiatan')->result();		
-            // var_dump($data);
-            // die();
+            $data['detail_kegiatan'] = $this->M_detail_kegiatan->edit_detail_kegiatan($id)->result();
+            //   $data['detail_kegiatan'] = $this->M_detail_kegiatan->get_detail_kegiatan_all()->result();	
+            
             $this->load->view('admin/detail_kegiatan_update', $data);
 	    }
     
-     function update_kegiatan($id){				
+     function update_detail_kegiatan($id){				
         
-        $id_kegiatan = $id;
-        $nama_detail_kegiatan = $this->input->post('nama_detail_kegiatan');
+        $id_detail_kegiatan = $id;
+        $id_kegiatan = $this->input->post('id_kegiatan');
+        $detail_kegiatan = $this->input->post('detail_kegiatan');
+        $tgl_mulai = $this->input->post('tgl_mulai');
+        $tgl_selesai = $this->input->post('tgl_selesai');
 
-         $this->form_validation->set_rules('nama_detail_kegiatan','Nama Detail Kegiatan Kegiatan','required',
+        $cek_tanggal = $this->M_detail_kegiatan->cek_tanggal_kegiatan()->result();
+         foreach ($cek_tanggal as $ct){
+                  $cek_tgl_mulai = $ct->tgl_mulai;
+                  $cek_tgl_selesai = $ct->tgl_selesai;
+            }
+
+            if($tgl_mulai < $cek_tgl_mulai) {
+                $this->form_validation->set_rules('tgl_mulai', 'Tanggal Mulai', 'rule1',
+                array('rule1' => '%s <b>Detail kegiatan</b> tidak boleh melebih <b>Rentang Waktu Kegiatan</b>')
+                );
+            } elseif($tgl_selesai > $cek_tgl_selesai){
+                
+                $this->form_validation->set_rules('tgl_selesai', 'Tanggal Mulai', 'rule2',
+                array('rule2' => '%s <b>Detail kegiatan</b> tidak boleh melebih <b>Rentang Waktu Kegiatan</b>')
+                );
+            }
+
+         $this->form_validation->set_rules('detail_kegiatan','Nama Detail Kegiatan Kegiatan','required',
             array(
                 'required' => '%s harus diisi'
             )
             );
+
+            $validasi = array(
+                    array('field' => 'tgl_mulai', 'label' => 'Tanggal Mulai', 'rules' => 'required|callback_compareDate'),
+                    array('field' => 'tgl_selesai', 'label' => 'Tanggal Selesai', 'rules' => 'required|callback_compareDate'),
+                );
+            $this->form_validation->set_rules($validasi);
+            $this->form_validation->set_message('required', '%s is required.');
+            
+          
           
         if($this->form_validation->run() != false){
 
                $data = array(
+                   'id_detail_kegiatan' => $id_detail_kegiatan,
                    'id_kegiatan' => $id_kegiatan,
-                   'detail_kegiatan' =>  $nama_detail_kegiatan,
+                   'detail_kegiatan' =>  $detail_kegiatan,
+                   'tgl_mulai' =>  $tgl_mulai,
+                   'tgl_selesai' =>  $tgl_selesai,
                    'created_at' => date('Y-m-d H:i:s')
                );
-            
-			$this->M_detail_kegiatan->insert_detail_kegiatan($data,'detail_kegiatan');
-            $this->session->set_flashdata('message', '<div class="alert alert-success"><b>Data Berhasil Ditambahkan!</b></div>');
-            $this->index($id_kegiatan);
+            $this->M_detail_kegiatan->update_detail_kegiatan($id, $data);
+            $data['detail_kegiatan'] = $this->M_detail_kegiatan->edit_detail_kegiatan($id,'detail_kegiatan')->result();	
+            $this->session->set_flashdata('message', '<div class="alert alert-warning"><b>Data Berhasil Diubah!</b></div>');
+            $get_id_kegiatan = $this->M_detail_kegiatan->get_id_kegiatan($id)->result();
+            foreach ($get_id_kegiatan as $ik){
+                  $id = $ik->id_kegiatan;
+                  echo "$id";
+            }
+             redirect(base_url().'detail_kegiatan/index/'.$id);
+        
             
 		}else{
-            $id = $this->input->post('id_kegiatan');
             $data['id_kegiatan'] = $this->input->post('id_kegiatan');
             $data['kegiatan'] = $this->M_kegiatan->get_kegiatan_by_id($id)->result();
-		    $this->load->view('admin/detail_kegiatan_add', $data);
+            $data['detail_kegiatan'] = $this->M_detail_kegiatan->edit_detail_kegiatan($id)->result();	
+		    $this->load->view('admin/detail_kegiatan_update', $data);
+            // redirect(base_url().'detail_kegiatan/edit_detail_kegiatan/'.$id);
           }
         }
 
@@ -118,7 +198,8 @@ class Detail_kegiatan extends CI_Controller {
         
         $where = $id;
         $this->M_detail_kegiatan->delete_detail_kegiatan($where,'detail_kegiatan');	
-		$id_kegiatan = $this->M_detail_kegiatan->get_id_kegiatan()->result();
+		
+        $id_kegiatan = $this->M_detail_kegiatan->get_id_kegiatan()->result();
         
          foreach ($id_kegiatan as $ik) {
          $id = $ik->id_kegiatan;
@@ -135,16 +216,16 @@ class Detail_kegiatan extends CI_Controller {
             => $this->session->userdata('username')])->row_array();
     }
 
-    function compareDate()
+
+     function compareDate()
 	{
 		$tgl_mulai = $_POST['tgl_mulai'];
 		$tgl_selesai = $_POST['tgl_selesai'];
 		$tgl_sekarang = date("Y-m-d h:i");
-		// var_dump($tgl_selesai);
-		// die();
+	
 
 		if ($tgl_selesai >= $tgl_mulai) {
-			return True;
+            return True;
 		} else {
 			$this->form_validation->set_message('compareDate', 'tgl Mulai harus lebih dahulu dari tanggal Selesai');
 			return False;

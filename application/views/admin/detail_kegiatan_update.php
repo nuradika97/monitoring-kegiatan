@@ -9,7 +9,7 @@
 
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800">Update Data detail_kegiatan</h1>
+        <h1 class="h3 mb-0 text-gray-800">Update Data Detail kegiatan</h1>
     </div>
 
     <!-- Content Row -->
@@ -19,10 +19,21 @@
             <?php foreach ($detail_kegiatan as $dk) : ?>
                 <form method="post" action="<?= base_url('detail_kegiatan/update_detail_kegiatan/').$dk->id_detail_kegiatan ?>" enctype="multipart/form-data" autocomplete="off">
                     <div class="form-group">
-                        <input type="hidden" name="id_detail_kegaitan" value="<?= $dk->id_detail_kegiatan ?>">
-                        <label>Nama :</label>
+                        <input type="hidden" name="id_kegiatan" value="<?= $dk->id_kegiatan ?>">
+                        <input type="hidden" name="id_detail_kegiatan" value="<?= $dk->id_detail_kegiatan ?>">
+                        <label>Nama Detail Kegiatan :</label>
                         <input type="text" class="form-control form-control-user" id="detail_kegiatan" name="detail_kegiatan" placeholder="Detail Kegiatan" value="<?= $dk->detail_kegiatan ?>">
-                        <?= form_error('nama', '<small class="text-danger">', '</small>') ?>
+                        <?= form_error('detail_kegiatan', '<small class="text-danger">', '</small>') ?>
+                    </div>
+                     <div class="form-group">
+                        <label>Tanggal Mulai :</label>
+                        <input type="date" class="form-control form-control-user" id="tgl_mulai" name="tgl_mulai" placeholder="Tanggal Mulai" value="<?= $dk->tgl_mulai ?>">
+                        <?= form_error('tgl_mulai', '<small class="text-danger">', '</small>') ?>
+                    </div>
+                    <div class="form-group">
+                        <label>Tanggal Selesai :</label>
+                        <input type="date" class="form-control form-control-user" id="tgl_selesai" name="tgl_selesai" placeholder="Tanggal Selesai" value="<?= $dk->tgl_selesai ?>">
+                        <?= form_error('tgl_selesai', '<small class="text-danger">', '</small>') ?>
                     </div>
 
 
