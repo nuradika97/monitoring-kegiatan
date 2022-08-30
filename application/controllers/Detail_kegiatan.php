@@ -42,6 +42,51 @@ class Detail_kegiatan extends CI_Controller {
         
     }
 
+    function alokasi_satker($id){      
+        $data['tim'] = $this->M_tim->get_tim_all()->result();
+        $data['periode'] = $this->M_periode->get_periode_all()->result();
+        $data['satuan'] = $this->M_satuan->get_satuan_all()->result();
+        $data['jenis_kegiatan'] = $this->M_jenis_kegiatan->get_jenis_kegiatan_all()->result();
+        $data['satker'] = $this->M_satker->get_satker_all()->result();
+        $data['detail_kegiatan'] = $this->M_detail_kegiatan->get_detail_kegiatan_by_id($id)->result();
+        $data['edit_alokasi_satker'] = $this->M_detail_kegiatan->edit_alokasi_satker($id)->result();
+        $data['id_detail_kegiatan'] = $id;
+        // var_dump($data['id']);
+        // die();
+        // $data['detail_kegiatan'] = $this->M_detail_kegiatan->get_detail_kegiatan_sum($id)->result();
+      
+        $this->load->view('admin/detail_kegiatan_alokasi', $data);
+        
+        
+    }
+
+    function alokasi_satker_act($id){
+        $data['id_detail_kegiatan'] = $id;      
+        // Ambil data yang dikirim dari form
+        $id_detail_kegiatan = $this->input->post('id_detail_kegiatan');
+        $id_satker = $this->input->post('satker'); 
+        $target = $this->input->post('target'); 
+        $data = array();
+        
+        $i = 0; // Set index array awal dengan 0
+        foreach($id_satker as $satker){ // buat perulangan berdasarkan jumlah id satker
+          array_push($data, array(
+            'id_detail_kegiatan'=>$id_detail_kegiatan[$i],
+            'id_satker'         =>$satker, 
+            'target'            =>$target[$i],
+            'created_at'        => date('Y-m-d')  
+          ));          
+          $i++;
+        }
+        $this->db->insert_batch('laporan_alokasi_satker', $data);
+        // var_dump($data['id']);
+        // die();
+        // $data['detail_kegiatan'] = $this->M_detail_kegiatan->get_detail_kegiatan_sum($id)->result();
+        $this->session->set_flashdata('add-success', 'Berhasil');
+            redirect(base_url().'detail_kegiatan/index/'.$id);
+        
+    }
+
     function add_detail_kegiatan_act(){
 
         $id_kegiatan = $this->input->post('id_kegiatan');

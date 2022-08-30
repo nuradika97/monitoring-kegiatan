@@ -94,6 +94,7 @@
                             <th class="text-center">Tanggal Selesai</th>
                             <!-- <th class="text-center">Target</th> -->
                             <th class="text-center">Target</th>
+                            <th class="text-center">Satuan</th>
                             <th class="text-center">Aksi Detail Kegiatan</th>
                             <th class="text-center">Aksi Alokasi Satker</th>
                         </thead>
@@ -110,6 +111,7 @@
                             <td>
                                 <!-- <b><?= $dk->target ?></b> -->
                             </td>
+                            <td><?= $dk->nama_satuan ?></td>
                             <td class="text-center">
                                 <a
                                     href="<?= base_url('detail_kegiatan/edit_detail_kegiatan/') . $dk->id_detail_kegiatan ?>"
@@ -131,7 +133,7 @@
 
                               <td class="text-center">
                                 <a
-                                    href="<?= base_url('detail_kegiatan/edit_kegiatan/') . $dk->id_detail_kegiatan ?>"
+                                    href="<?= base_url('detail_kegiatan/alokasi_satker/') . $dk->id_detail_kegiatan ?>"
                                     class="btn btn-info btn-sm mr-2"
                                     data-toggle="tooltip"
                                     data-placement="top"

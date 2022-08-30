@@ -6,6 +6,8 @@ class M_detail_kegiatan extends CI_Model
 
     function get_detail_kegiatan_by_id($id)
     {
+        $this->db->select('*');
+        $this->db->join('satuan', 'detail_kegiatan.id_satuan = satuan.id_satuan');
         $this->db->where('id_detail_kegiatan', $id);
         return $this->db->get('detail_kegiatan');
     }
@@ -36,6 +38,7 @@ class M_detail_kegiatan extends CI_Model
     {
         $this->db->select('*');
         $this->db->from('detail_kegiatan');
+        $this->db->join('satuan', 'detail_kegiatan.id_satuan = satuan.id_satuan');
         // $this->db->group_by('id_detail_kegiatan');
         // $this->db->order_by('id_tim');
         return $this->db->get();
@@ -65,6 +68,18 @@ class M_detail_kegiatan extends CI_Model
         $this->db->where('id_detail_kegiatan', $id);
         return $this->db->get();
 	}
+
+    function edit_alokasi_satker($id){
+        $this->db->select('*');
+        $this->db->from('laporan_alokasi_satker');
+        // $this->db->join('kegiatan','detail_kegiatan.id_kegiatan = kegiatan.id_kegiatan');
+        // $this->db->join('tim', 'kegiatan.id_tim = tim.id_tim');
+        // $this->db->join('satuan', 'kegiatan.id_satuan = satuan.id_satuan');
+        // $this->db->join('jenis_kegiatan', 'kegiatan.id_jenis_kegiatan = jenis_kegiatan.id_jenis_kegiatan');
+        // $this->db->join('periode', 'kegiatan.id_periode = periode.id_periode');
+        $this->db->where('id_detail_kegiatan', $id);
+        return $this->db->get();
+    }
 
     function update_detail_kegiatan($where,$data){
 		$this->db->where('id_detail_kegiatan',$where);
