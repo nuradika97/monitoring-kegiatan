@@ -49,10 +49,11 @@ class Detail_kegiatan extends CI_Controller {
         $data['jenis_kegiatan'] = $this->M_jenis_kegiatan->get_jenis_kegiatan_all()->result();
         $data['satker'] = $this->M_satker->get_satker_all()->result();
         $data['detail_kegiatan'] = $this->M_detail_kegiatan->get_detail_kegiatan_by_id($id)->result();
-        $data['edit_alokasi_satker'] = $this->M_detail_kegiatan->edit_alokasi_satker($id)->result();
+        $data['alokasi_satker'] = $this->M_alokasi_satker->get_alokasi_satker_by_id($id)->result();
+        $data['edit_alokasi_satker'] = $this->M_alokasi_satker->edit_alokasi_satker($id)->result();
         $data['id_detail_kegiatan'] = $id;
-        // var_dump($data['id']);
-        // die();
+        var_dump($data['alokasi_satker']);
+        die();
         // $data['detail_kegiatan'] = $this->M_detail_kegiatan->get_detail_kegiatan_sum($id)->result();
       
         $this->load->view('admin/detail_kegiatan_alokasi', $data);
@@ -70,12 +71,14 @@ class Detail_kegiatan extends CI_Controller {
         
         $i = 0; // Set index array awal dengan 0
         foreach($id_satker as $satker){ // buat perulangan berdasarkan jumlah id satker
-          array_push($data, array(
-            'id_detail_kegiatan'=>$id_detail_kegiatan[$i],
-            'id_satker'         =>$satker, 
-            'target'            =>$target[$i],
-            'created_at'        => date('Y-m-d')  
-          ));          
+            if (!empty($target[$i])){
+              array_push($data, array(
+                'id_detail_kegiatan'=>$id_detail_kegiatan[$i],
+                'id_satker'         =>$satker, 
+                'target'            =>$target[$i],
+                'created_at'        => date('Y-m-d')  
+              ));
+          }         
           $i++;
         }
         $this->db->insert_batch('laporan_alokasi_satker', $data);

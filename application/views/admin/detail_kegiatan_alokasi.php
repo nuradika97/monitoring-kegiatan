@@ -82,7 +82,8 @@
                         
                             <label>[<?=$s->kode_satker?>] <?=$s->nama_satker?></label>
                         </div>
-
+                        <?php
+                        foreach ($edit_alokasi_satker as $eas) : ?>
                         <div class="col-sm-8">
                             <input
                                 type="text"
@@ -90,9 +91,10 @@
                                 id="target[]"
                                 name="target[]"
                                 placeholder=""
-                                value="<?= set_value('target[]') ?>">
+                                value="<?= $eas->target ?>">
                                 <?= form_error('target[]', '<small class="text-danger">', '</small>') ?>
                         </div>
+                        <?php endforeach; ?>
 
                     </div>
                 <?php endforeach; ?>
