@@ -64,6 +64,29 @@
                     foreach ($satker as $s) : ?>
                     <div class="form-group row">
                         <div class="col-sm-4 mb-3 mb-sm-0 text-center border">
+                        <!-- Menyimpan id alokasi satker -->
+                        <!-- cek apakah alokasi satker pernah dilakukan, 
+                            jika pernah value dibuat id_alokasi_satker dan lakukan update alokasi, 
+                            jika belum pernah value dibuat 0 dan lakukan insert untuk alokasi tersebut-->
+                        <input 
+                            type="hidden"
+                            class="form-control form-control-user"
+                            id="id_alokasi_satker[]"
+                            name="id_alokasi_satker[]"
+                            <?php
+                                    $i = 0; 
+                                    foreach ($edit_alokasi_satker as $eas) : 
+                                    if ($eas->id_satker==$s->id_satker){ 
+                                        $i++; ?>
+
+                                        value="<?= $eas->id_alokasi_satker ?>">
+
+                                    <?php }
+                                    endforeach;
+                                    if ($i==0){ ?>
+                                        value="<?= set_value('id_alokasi_satker[]') ?>">
+                                    <?php } 
+                                    ?>
                         <!-- Menyimpan id detail kegiatan -->
                         <input
                             type="hidden"
@@ -82,19 +105,34 @@
                         
                             <label>[<?=$s->kode_satker?>] <?=$s->nama_satker?></label>
                         </div>
-                        <?php
-                        foreach ($edit_alokasi_satker as $eas) : ?>
-                        <div class="col-sm-8">
+                        
+                        
+                        <div class="col-sm-8"> 
                             <input
                                 type="text"
-                                class="form-control form-control-user"
+                                class="form-control form-control-user"                                
+                                placeholder=""
                                 id="target[]"
                                 name="target[]"
-                                placeholder=""
-                                value="<?= $eas->target ?>">
+
+                                <?php
+                                    $i = 0;
+                                    foreach ($edit_alokasi_satker as $eas) : 
+                                    if ($eas->id_satker==$s->id_satker){ 
+                                        $i++; ?>
+
+                                        value="<?= $eas->target ?>">
+
+                                    <?php }
+                                    endforeach; 
+                                    if ($i==0){ ?>
+                                        value="<?= set_value('target[]') ?>">
+                                    <?php } 
+                                ?>
+
                                 <?= form_error('target[]', '<small class="text-danger">', '</small>') ?>
                         </div>
-                        <?php endforeach; ?>
+                        
 
                     </div>
                 <?php endforeach; ?>

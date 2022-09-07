@@ -52,8 +52,8 @@ class Detail_kegiatan extends CI_Controller {
         $data['alokasi_satker'] = $this->M_alokasi_satker->get_alokasi_satker_by_id($id)->result();
         $data['edit_alokasi_satker'] = $this->M_alokasi_satker->edit_alokasi_satker($id)->result();
         $data['id_detail_kegiatan'] = $id;
-        var_dump($data['alokasi_satker']);
-        die();
+        // var_dump($data['alokasi_satker']);
+        // die();
         // $data['detail_kegiatan'] = $this->M_detail_kegiatan->get_detail_kegiatan_sum($id)->result();
       
         $this->load->view('admin/detail_kegiatan_alokasi', $data);
@@ -64,24 +64,68 @@ class Detail_kegiatan extends CI_Controller {
     function alokasi_satker_act($id){
         $data['id_detail_kegiatan'] = $id;      
         // Ambil data yang dikirim dari form
-        $id_detail_kegiatan = $this->input->post('id_detail_kegiatan');
-        $id_satker = $this->input->post('satker'); 
-        $target = $this->input->post('target'); 
-        $data = array();
+        $id_alokasi_satker = $this->input->post('id_alokasi_satker'); //id alokasi satker unik
+        $id_detail_kegiatan = $this->input->post('id_detail_kegiatan'); //id detail kegiatan (1 id untuk 9 satker)
+        $id_satker = $this->input->post('satker'); //id satker sejumlahh 9 satker
+        $target = $this->input->post('target');  //target untuk tiap alokasi satker
+        $data = array();                        //array untuk INSERT data baru
+        $data_update = array();                 //array untuk UPDATE data yang pernah diinsert
+        
         
         $i = 0; // Set index array awal dengan 0
         foreach($id_satker as $satker){ // buat perulangan berdasarkan jumlah id satker
-            if (!empty($target[$i])){
-              array_push($data, array(
+            if (!empty($target[$i])){ //kalau target ada isinya lakukan insert
+              if (empty($id_alokasi_satker[$i])){ //kalau id_alokasi_satker kosong (belum pernah insert sebelumnya) -> lakukan insert data
+                array_push($data, array(
                 'id_detail_kegiatan'=>$id_detail_kegiatan[$i],
                 'id_satker'         =>$satker, 
                 'target'            =>$target[$i],
                 'created_at'        => date('Y-m-d')  
-              ));
+                ));
+              } elseif(!empty($id_alokasi_satker[$i])){ //kalau id_alokasi_satker ada isinya (pernah insert sebelumnya) -> lakukan update data
+                array_push($data_update, array(
+                'id_alokasi_satker' =>$id_alokasi_satker[$i],
+                'id_detail_kegiatan'=>$id_detail_kegiatan[$i],
+                'id_satker'         =>$satker, 
+                'target'            =>$target[$i],
+                'created_at'        => date('Y-m-d')  
+                ));
+              }  
           }         
           $i++;
         }
-        $this->db->insert_batch('laporan_alokasi_satker', $data);
+
+        if (!empty($data)){
+            $this->db->insert_batch('laporan_alokasi_satker', $data);
+        }
+        if (!empty($data_update)){
+            $this->db->update_batch('laporan_alokasi_satker',$data_update, 'id_alokasi_satker');
+        }
+        
+        
+        
+        // $this->db->insert_batch('laporan_alokasi_satker', $data); //INSERT DATA alokasi baru pada database        
+        // $this->db->update_batch('laporan_alokasi_satker',$data_update, 'id_alokasi_satker'); //UPDATE DATA yang pernah dialokasikan pada database
+        
+        // $i = 0; // Set index array awal dengan 0
+        // foreach($id_satker as $satker){ // buat perulangan berdasarkan jumlah id satker
+        //     if (!empty($target[$i])){ //kalau target ada isinya lakukan update
+        //       if (!empty($id_alokasi_satker[$i])){ //kalau id_alokasi_satker ada isinya (pernah insert sebelumnya)
+        //         array_push($data_update, array(
+        //         'id_alokasi_satker' =>$id_alokasi_satker[$i],
+        //         'id_detail_kegiatan'=>$id_detail_kegiatan[$i],
+        //         'id_satker'         =>$satker, 
+        //         'target'            =>$target[$i],
+        //         'created_at'        => date('Y-m-d')  
+        //         ));
+        //       }  
+        //   }         
+        //   $i++;
+        // }
+        // if ($i>0){
+        //     $this->db->update_batch('laporan_alokasi_satker',$data_update, 'id_alokasi_satker'); //UPDATE DATA yang pernah dialokasikan pada database
+        // }
+
         // var_dump($data['id']);
         // die();
         // $data['detail_kegiatan'] = $this->M_detail_kegiatan->get_detail_kegiatan_sum($id)->result();
